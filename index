@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Income & Expense Calculator</title>
+  <style>
+    /* Base & Layout */
+    body {
+      margin: 0;
+      padding: 20px;
+      background-color: #f7f9fc;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #1e2d5c;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .flex-row {
+      display: flex;
+      gap: 20px;
+    }
+    @media (max-width: 768px) {
+      .flex-row {
+        flex-direction: column;
+      }
+      .form-row label {
+        width: auto;
+      }
+    }
+    /* Cards */
+    .card {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+    /* Headings */
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 1.8rem;
+    }
+    h2 {
+      margin-top: 0;
+      margin-bottom: 15px;
+      font-weight: bold;
+      color: #1e2d5c;
+    }
+    #expenses-section h2 {
+      color: #d9534f;
+    }
+    h3 {
+      margin-top: 25px;
+      margin-bottom: 10px;
+      font-weight: bold;
+      color: #1e2d5c;
+    }
+    /* Form rows */
+    .form-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .form-row label {
+      min-width: 140px;
+    }
+    .form-row input,
+    .form-row select {
+      flex: 1;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 0.95rem;
+    }
+    /* Income vs Expense inputs */
+    .income-input {
+      color: #2c9c7a;
+    }
+    .expense-input {
+      color: #d9534f;
+    }
+    #expenses-section label {
+      color: #d9534f;
+    }
+    /* Buttons */
+    .button-add {
+      background-color: #2c9c7a;
+      color: #ffffff;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    .button-add:hover {
+      opacity: 0.9;
+    }
+    .button-small {
+      background-color: #1e2d5c;
+      color: #ffffff;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.85rem;
+    }
+    .button-small:hover {
+      opacity: 0.9;
+    }
+    /* Totals & Results */
+    .income-amount {
+      color: #2c9c7a;
+      font-weight: bold;
+    }
+    .expense-amount {
+      color: #d9534f;
+      font-weight: bold;
+    }
+    .success {
+      color: #2c9c7a;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    .warning {
+      color: #d9534f;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    /* Expense selector */
+    #expense-selector {
+      display: none;
+      align-items: center;
+      gap: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Income & Expense Calculator</h1>
+
+    <div class="flex-row">
+      <!-- Income Section -->
+      <div class="card" id="income-section">
+        <h2>Income</h2>
+
+        <!-- Employers -->
+        <div id="employers-container">
+          <div class="form-row employer-row">
+            <label>Employer 1 Hourly Rate ($):</label>
+            <input type="number" class="hourly-rate income-input" placeholder="Hourly Rate" min="0" step="0.01">
+            <label>Hours/Week:</label>
+            <input type="number" class="hours-per-week income-input" placeholder="Hours/Week" min="0" step="0.1">
+          </div>
+        </div>
+        <button type="button" class="button-add" id="add-employer-btn">+ Add Another Employer</button>
+
+        <!-- Other Income -->
+        <h3>Other Income</h3>
+        <div id="other-income-container">
+          <div class="form-row other-income-row">
+            <select class="other-income-type">
+              <option>Social Security</option>
+              <option>Retirement</option>
+              <option>Disability</option>
+              <option>Alimony</option>
+              <option>Other Income</option>
+            </select>
+            <input type="number" class="other-income-input income-input" placeholder="Monthly Amount" min="0" step="0.01">
+          </div>
+        </div>
+        <button type="button" class="button-add" id="add-other-income-btn">+ Add Another Income Source</button>
+      </div>
+
+      <!-- Expenses Section -->
+      <div class="card" id="expenses-section">
+        <h2>Expenses</h2>
+        <!-- Static Expense Fields -->
+        <div class="form-row">
+          <label>Rent:</label>
+          <input type="number" id="rent-input" class="expense-input" placeholder="Monthly Rent" min="0" step="0.01">
+        </div>
+        <div class="form-row">
+          <label>Child Support:</label>
+          <input type="number" id="child-support-input" class="expense-input" placeholder="Monthly Child Support" min="0" step="0.01">
+        </div>
+        <div class="form-row">
+          <label>Medical Bills:</label>
+          <input type="number" id="medical-bills-input" class="expense-input" placeholder="Monthly Medical Bills" min="0" step="0.01">
+        </div>
+        <!-- Dynamic Expense Fields -->
+        <div id="dynamic-expenses"></div>
+        <button type="button" class="button-add" id="add-expense-btn">+ Add Expense</button>
+        <div id="expense-selector">
+          <select id="expense-type-select">
+            <option value="car">Car Payment</option>
+            <option value="credit">Credit Card</option>
+            <option value="loan">Loan</option>
+          </select>
+          <button type="button" class="button-small" id="expense-type-confirm-btn">Add</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Totals & Affordability -->
+    <div class="card" id="totals-section">
+      <h2>Totals & Affordability</h2>
+      <div class="form-row">
+        <label>Total Monthly Income:</label>
+        <span id="total-income" class="income-amount">$0.00</span>
+      </div>
+      <div class="form-row">
+        <label>Total Monthly Debt:</label>
+        <span id="total-debt" class="expense-amount">$0.00</span>
+      </div>
+      <div class="form-row">
+        <label>Disposable Income:</label>
+        <span id="disposable-income" class="income-amount">$0.00</span>
+      </div>
+      <div id="affordability-sentence" class="form-row">
+        <span class="income-amount">You could afford a monthly payment of $0.00</span>
+      </div>
+    </div>
+
+    <!-- Affordability Check -->
+    <div class="card" id="affordability-section">
+      <h2>Affordability Check</h2>
+      <div class="form-row">
+        <label>Target Monthly Mortgage:</label>
+        <input type="number" id="mortgage-input" placeholder="Desired Payment" min="0" step="0.01">
+        <button type="button" class="button-small" id="check-afford-btn">Check</button>
+      </div>
+      <div id="affordability-result"></div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      let employerCount = 1;
+      const maxEmployers = 4;
+      const employersContainer = document.getElementById('employers-container');
+      const addEmployerBtn = document.getElementById('add-employer-btn');
+
+      addEmployerBtn.addEventListener('click', () => {
+        if (employerCount < maxEmployers) {
+          employerCount++;
+          const row = document.createElement('div');
+          row.className = 'form-row employer-row';
+          row.innerHTML = \`
+            <label>Employer \${employerCount} Hourly Rate ($):</label>
+            <input type="number" class="hourly-rate income-input" placeholder="Hourly Rate" min="0" step="0.01">
+            <label>Hours/Week:</label>
+            <input type="number" class="hours-per-week income-input" placeholder="Hours/Week" min="0" step="0.1">
+          \`;
+          employersContainer.appendChild(row);
+          if (employerCount === maxEmployers) {
+            addEmployerBtn.disabled = true;
+          }
+        }
+      });
+
+      let otherIncomeCount = 1;
+      const otherIncomeContainer = document.getElementById('other-income-container');
+      const addOtherIncomeBtn = document.getElementById('add-other-income-btn');
+
+      addOtherIncomeBtn.addEventListener('click', () => {
+        otherIncomeCount++;
+        const row = document.createElement('div');
+        row.className = 'form-row other-income-row';
+        row.innerHTML = \`
+          <select class="other-income-type">
+            <option>Social Security</option>
+            <option>Retirement</option>
+            <option>Disability</option>
+            <option>Alimony</option>
+            <option>Other Income</option>
+          </select>
+          <input type="number" class="other-income-input income-input" placeholder="Monthly Amount" min="0" step="0.01">
+        \`;
+        otherIncomeContainer.appendChild(row);
+      });
+
+      const expenseSelector = document.getElementById('expense-selector');
+      const addExpenseBtn = document.getElementById('add-expense-btn');
+      const expenseTypeSelect = document.getElementById('expense-type-select');
+      const expenseConfirmBtn = document.getElementById('expense-type-confirm-btn');
+      const dynamicExpenses = document.getElementById('dynamic-expenses');
+
+      const expenseCounts = { car: 0, credit: 0, loan: 0 };
+      const expenseLimits = { car: 2, credit: 10, loan: 10 };
+
+      addExpenseBtn.addEventListener('click', () => {
+        expenseSelector.style.display = 'flex';
+      });
+
+      expenseConfirmBtn.addEventListener('click', () => {
+        const type = expenseTypeSelect.value;
+        if (expenseCounts[type] < expenseLimits[type]) {
+          expenseCounts[type]++;
+          const row = document.createElement('div');
+          row.className = 'form-row';
+          let labelText = '';
+          if (type === 'car') labelText = \`Car Payment #\${expenseCounts[type]}\`;
+          if (type === 'credit') labelText = \`Credit Card #\${expenseCounts[type]}\`;
+          if (type === 'loan') labelText = \`Loan #\${expenseCounts[type]}\`;
+          row.innerHTML = \`
+            <label>\${labelText}:</label>
+            <input type="number" class="expense-input" placeholder="Monthly Amount" min="0" step="0.01">
+          \`;
+          dynamicExpenses.appendChild(row);
+          if (expenseCounts[type] === expenseLimits[type]) {
+            Array.from(expenseTypeSelect.options)
+              .find(o => o.value === type)
+              .disabled = true;
+          }
+        }
+        expenseSelector.style.display = 'none';
+        expenseTypeSelect.value = 'car';
+        updateTotals();
+      });
+
+      document.addEventListener('input', updateTotals);
+
+      function updateTotals() {
+        // Calculate total employer income
+        let totalEmp = 0;
+        document.querySelectorAll('.employer-row').forEach(row => {
+          const r = row.querySelector('.hourly-rate').valueAsNumber || 0;
+          const h = row.querySelector('.hours-per-week').valueAsNumber || 0;
+          totalEmp += (r * h * 52 / 12);
+        });
+        // Calculate other income
+        let totalOther = 0;
+        document.querySelectorAll('.other-income-input').forEach(i => {
+          totalOther += i.valueAsNumber || 0;
+        });
+        const totalIncome = totalEmp + totalOther;
+
+        // Static expenses
+        const rent = document.getElementById('rent-input').valueAsNumber || 0;
+        const cs = document.getElementById('child-support-input').valueAsNumber || 0;
+        const mb = document.getElementById('medical-bills-input').valueAsNumber || 0;
+
+        // Dynamic expenses
+        let dynTotal = 0;
+        dynamicExpenses.querySelectorAll('.expense-input').forEach(i => {
+          dynTotal += i.valueAsNumber || 0;
+        });
+
+        const totalDebt = rent + cs + mb + dynTotal;
+        const disposable = totalIncome - totalDebt;
+        const maxPayment = disposable + rent;
+
+        // Update UI
+        document.getElementById('total-income').textContent = `$${totalIncome.toFixed(2)}`;
+        document.getElementById('total-debt').textContent = `$${totalDebt.toFixed(2)}`;
+        document.getElementById('disposable-income').textContent = `$${disposable.toFixed(2)}`;
+        document.querySelector('#affordability-sentence span').textContent =
+          `You could afford a monthly payment of $${maxPayment.toFixed(2)}`;
+      }
+
+      // Initial totals
+      updateTotals();
+
+      document.getElementById('check-afford-btn').addEventListener('click', () => {
+        const target = document.getElementById('mortgage-input').valueAsNumber || 0;
+        const rent = document.getElementById('rent-input').valueAsNumber || 0;
+        const disposableText = document.getElementById('disposable-income').textContent.replace(/[^0-9.\-]/g, '') || "0";
+        const disposableIncome = parseFloat(disposableText);
+        const threshold = disposableIncome + rent;
+        const resultDiv = document.getElementById('affordability-result');
+
+        if (target <= threshold) {
+          resultDiv.textContent = '✅ You could afford this!';
+          resultDiv.className = 'success';
+        } else {
+          resultDiv.textContent = '⚠️ This may stretch your current income.';
+          resultDiv.className = 'warning';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
