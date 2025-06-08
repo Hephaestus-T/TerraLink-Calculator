@@ -29,11 +29,9 @@
       font-size: 2.5rem;
       text-align: center;
       margin-bottom: 40px;
-      letter-spacing: 1px;
     }
     .wizard { max-width: 960px; margin: 0 auto; overflow: hidden; }
 
-    /*–– Progress Bar ––*/
     .wizard-progress { display:flex; margin-bottom:40px; }
     .wizard-step {
       flex:1; text-align:center; padding:12px 0;
@@ -51,13 +49,11 @@
       border-radius:2px;
     }
 
-    /*–– Panels ––*/
     .wizard-panels {
       display:flex; width:400%; transition:transform .5s ease;
     }
     .panel { flex:1; padding:50px 30px; }
 
-    /*–– Cards ––*/
     .card {
       background:#fff; border-radius:14px;
       box-shadow:0 6px 16px rgba(0,0,0,0.05);
@@ -68,10 +64,9 @@
       font-size:1.6rem; color:var(--navy);
       margin-bottom:24px;
       border-bottom:2px solid var(--green);
-      padding-bottom:8px; letter-spacing:.5px;
+      padding-bottom:8px;
     }
 
-    /*–– Form Rows ––*/
     .form-row {
       display:flex; flex-wrap:wrap; align-items:center;
       margin-bottom:20px;
@@ -83,7 +78,6 @@
     .form-row input {
       flex:1; padding:10px 8px;
       border:none; border-bottom:2px solid #ccc;
-      font-size:1rem;
       transition:border-color .3s,box-shadow .3s;
     }
     .form-row input:focus {
@@ -93,15 +87,11 @@
     }
     .form-row select {
       -webkit-appearance:none; -moz-appearance:none; appearance:none;
-      width:100%;
-      background: var(--bg-gray);
-      border:1px solid #ccc;
-      border-radius:8px;
-      padding:14px 16px;
-      font-size:1.1rem;
-      color:var(--navy);
+      width:100%; background: var(--bg-gray);
+      border:1px solid #ccc; border-radius:8px;
+      padding:14px 16px; margin:8px 0 24px;
+      font-size:1.1rem; color:var(--navy);
       box-shadow: inset 0 2px 6px rgba(0,0,0,0.1);
-      margin:8px 0 24px;
       transition:border-color .25s,box-shadow .25s;
     }
     .form-row select:hover,
@@ -111,13 +101,11 @@
       outline:none;
     }
 
-    /*–– Buttons ––*/
     .btn {
       display:inline-block; padding:12px 20px;
       border:none; border-radius:8px;
       font-size:1rem; font-weight:600;
       cursor:pointer; margin-top:24px;
-      font-family:Lato,sans-serif;
       transition:background .3s,transform .2s;
     }
     .btn-gold { background:var(--green); color:#fff; }
@@ -125,14 +113,10 @@
     .btn-navy { background:var(--navy); color:#fff; margin-left:16px; }
     .btn-navy:hover { transform:translateY(-2px); }
 
-    /* extra breathing */
     #add-employer-btn,
     #add-other-income-btn,
-    #add-expense-btn {
-      margin-bottom:50px;
-    }
+    #add-expense-btn { margin-bottom:50px; }
 
-    /*–– Income displays ––*/
     .monthly-display {
       margin-left:auto; font-weight:700;
       font-size:1.15rem; color:var(--green);
@@ -142,7 +126,6 @@
       font-weight:700; margin-top:8px;
     }
 
-    /*–– Expenses total ––*/
     .expense-total-row {
       margin-top:16px; border-top:1px dashed #ddd;
       padding-top:16px;
@@ -155,65 +138,61 @@
       font-size:1rem; font-weight:600; color:var(--text-dark);
     }
 
-    /*–– Summary formula ––*/
+    /* Summary panel */
     #equation {
       display:flex; flex-direction:column;
       align-items:center; gap:16px;
       margin:32px 0;
     }
     .eq-row {
-      display:flex; justify-content:center;
-      gap:24px; font-size:1.6rem; line-height:1.2;
-      color:var(--navy);
+      display:flex; justify-content:space-between;
+      width:80%; font-size:1.6rem; line-height:1.2;
     }
+    .eq-row span { display:inline-block; }
     .eq-row span:last-child { font-weight:700; }
+    #eq-income { color:var(--green); }
+    #eq-exp    { color:var(--red); }
+    #eq-disp   { /* colored dynamically */ }
 
-    /*–– Elegant copy button ––*/
+    /* warning if under $600 */
+    #budget-health {
+      font-size:1.2rem;
+      color: var(--red);
+      text-align:center;
+      margin-bottom:16px;
+    }
+
     .btn-copy {
       display:inline-block; margin:0 auto 32px;
       padding:10px 18px;
       border:2px solid var(--navy);
       border-radius:6px;
-      background:#fff;
-      color:var(--navy);
+      background:#fff; color:var(--navy);
       font-size:1rem; font-weight:600;
       cursor:pointer;
       transition:background .3s,color .3s,transform .2s;
     }
     .btn-copy:hover {
-      background:var(--navy);
-      color:#fff;
+      background:var(--navy); color:#fff;
       transform:translateY(-2px);
     }
 
-    /*–– Button row ––*/
     .btn-row {
       display:flex; justify-content:space-between;
       margin-top:30px;
     }
 
-    /*–– Chart ––*/
-    #chart-container {
-      display:flex; flex-wrap:wrap; align-items:center;
-      justify-content:center; gap:24px; margin-top:40px;
-    }
+    #chart-container { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:24px; margin-top:40px; }
     #breakdown-chart { width:240px; height:240px; }
     #chart-legend { list-style:none; padding:0; margin:0; }
-    #chart-legend li {
-      display:flex; align-items:center; margin-bottom:10px;
-      font-size:1rem; color:var(--text-dark);
-    }
-    .dot {
-      width:14px; height:14px; border-radius:50%;
-      display:inline-block; margin-right:10px;
-    }
-    #affordability-explanation p {
-      margin:12px 0;
-      font-size:1.4rem; line-height:1.4;
-    }
-    #affordability-explanation .rent     { color:var(--red);   font-weight:700; }
-    #affordability-explanation .toward   { color:var(--yellow); font-weight:700; }
-    #affordability-explanation .leftover { color:var(--green); font-weight:700; }
+    #chart-legend li { display:flex; align-items:center; margin-bottom:10px; }
+    .dot { width:14px; height:14px; border-radius:50%; display:inline-block; margin-right:10px; }
+    #affordability-explanation p { margin:12px 0; font-size:1.4rem; line-height:1.4; }
+    #affordability-explanation .rent     { color:var(--red);   }
+    #affordability-explanation .toward   { color:var(--yellow); }
+    #affordability-explanation .leftover { color:var(--green); }
+    /* ensure shortfall is red */
+    .shortfall { color: var(--red); font-weight:600; }
     #affordability-result { font-size:1.4rem; margin-top:24px; }
 
     @media(max-width:768px){
@@ -227,7 +206,6 @@
   <div class="wizard">
     <h1>Find Your Path to Homeownership</h1>
 
-    <!-- STEP NAV -->
     <div class="wizard-progress">
       <div class="wizard-step" data-step="0">1. Income</div>
       <div class="wizard-step" data-step="1">2. Expenses</div>
@@ -235,28 +213,23 @@
       <div class="wizard-step" data-step="3">4. Mortgage</div>
     </div>
 
-    <!-- PANELS -->
     <div class="wizard-panels">
 
-      <!-- STEP 1: Income -->
+      <!-- STEP 1 -->
       <section class="panel">
         <div class="section-title">Let’s figure out your monthly income</div>
         <div id="employers-container"></div>
         <button class="btn btn-gold" id="add-employer-btn">+ Add Employer</button>
-
         <div class="section-title">Other Income</div>
         <div id="other-income-container"></div>
         <button class="btn btn-gold" id="add-other-income-btn">+ Add Income</button>
-
         <div class="form-row">
-          <label>Total Monthly Income:</label>
-          <div id="total-income">$0.00</div>
+          <label>Total Monthly Income:</label><div id="total-income">$0.00</div>
         </div>
-
         <button class="btn btn-gold next-btn">Next →</button>
       </section>
 
-      <!-- STEP 2: Expenses -->
+      <!-- STEP 2 -->
       <section class="panel">
         <div class="section-title">Let’s figure out your monthly expenses</div>
         <div id="expenses-container"></div>
@@ -271,33 +244,22 @@
           </select>
           <button class="btn btn-navy" id="expense-type-confirm-btn">Add</button>
         </div>
-
         <div class="expense-total-row form-row">
-          <label>Total Monthly Expenses:</label>
-          <div id="total-expenses">$0.00</div>
+          <label>Total Monthly Expenses:</label><div id="total-expenses">$0.00</div>
         </div>
-
         <button class="btn prev-btn">← Back</button>
         <button class="btn btn-gold next-btn">Next →</button>
       </section>
 
-      <!-- STEP 3: Summary -->
+      <!-- STEP 3 -->
       <section class="panel">
         <div class="section-title">Your Disposable Income</div>
         <div id="equation">
-          <div class="eq-row">
-            <span>Monthly Income</span>
-            <span id="eq-income">$0.00</span>
-          </div>
-          <div class="eq-row">
-            <span>– Monthly Expenses</span>
-            <span id="eq-exp">$0.00</span>
-          </div>
-          <div class="eq-row">
-            <span>= Disposable Income</span>
-            <span id="eq-disp">$0.00</span>
-          </div>
+          <div class="eq-row"><span>Monthly Income</span><span id="eq-income">$0.00</span></div>
+          <div class="eq-row"><span>– Monthly Expenses</span><span id="eq-exp">$0.00</span></div>
+          <div class="eq-row"><span>= Disposable Income</span><span id="eq-disp">$0.00</span></div>
         </div>
+        <div id="budget-health"></div>
         <button id="copy-btn" class="btn-copy">📋 Copy for reference</button>
         <div class="btn-row">
           <button class="btn prev-btn">← Back</button>
@@ -305,7 +267,7 @@
         </div>
       </section>
 
-      <!-- STEP 4: Mortgage -->
+      <!-- STEP 4 -->
       <section class="panel">
         <div class="section-title">Do you have a target mortgage payment?</div>
         <div class="form-row">
@@ -320,7 +282,6 @@
         </div>
         <div id="affordability-explanation"></div>
         <div id="affordability-result"></div>
-
         <button class="btn prev-btn">← Back</button>
       </section>
 
@@ -328,123 +289,94 @@
   </div>
 
   <script>
-    // helper to format with commas + two decimals
-    function fmt(num) {
-      return num.toLocaleString('en-US', {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-      });
-    }
-    const varGet = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+    function fmt(n){ return n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}); }
+    const varGet = n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
 
     document.addEventListener('DOMContentLoaded', () => {
-      // NAVIGATION
-      const steps  = [...document.querySelectorAll('.wizard-step')],
-            panels = document.querySelector('.wizard-panels');
-      let current = 0;
-      function showStep(i) {
-        current = i;
-        const pct = (i*100)/steps.length;
-        panels.style.transform = `translateX(-${pct}%)`;
-        steps.forEach((s,idx)=> s.classList.toggle('active', idx===i));
+      const steps=[...document.querySelectorAll('.wizard-step')],
+            panels=document.querySelector('.wizard-panels');
+      let cur=0;
+      function show(i){ cur=i; panels.style.transform=`translateX(-${(i*100)/steps.length}%)`;
+        steps.forEach((s,j)=>s.classList.toggle('active',j===i));
       }
-      steps.forEach(s=> s.onclick = ()=> showStep(+s.dataset.step));
-      showStep(0);
+      steps.forEach(s=>s.onclick=()=>show(+s.dataset.step));
+      show(0);
+      document.querySelectorAll('.next-btn').forEach(b=>b.onclick=()=>show(Math.min(cur+1,3)));
+      document.querySelectorAll('.prev-btn').forEach(b=>b.onclick=()=>show(Math.max(cur-1,0)));
 
-      // NEXT / BACK
-      document.querySelectorAll('.next-btn')
-        .forEach(b=>b.onclick = ()=> showStep(Math.min(current+1,3)));
-      document.querySelectorAll('.prev-btn')
-        .forEach(b=>b.onclick = ()=> showStep(Math.max(current-1,0)));
+      let emp=0,oth=0,maxE=4;
+      const empC=document.getElementById('employers-container'),
+            addE=document.getElementById('add-employer-btn'),
+            othC=document.getElementById('other-income-container'),
+            addO=document.getElementById('add-other-income-btn');
 
-      // STEP 1: INCOME
-      let empCount=0, othCount=0, maxEmp=4;
-      const empCont = document.getElementById('employers-container'),
-            addEmp  = document.getElementById('add-employer-btn'),
-            othCont = document.getElementById('other-income-container'),
-            addOth  = document.getElementById('add-other-income-btn');
-      addEmp.onclick = ()=>{
-        if(empCount>=maxEmp) return;
-        empCount++;
-        const card=document.createElement('div'); card.className='card';
-        card.innerHTML=`
-          <div class="section-title">Employer ${empCount}</div>
+      addE.onclick=()=>{
+        if(emp>=maxE) return; emp++;
+        const c=document.createElement('div');c.className='card';
+        c.innerHTML=`
+          <div class="section-title">Employer ${emp}</div>
           <div class="form-row"><label>Hourly Rate ($):</label><input type="number" class="hourly-rate" min="0" step="0.01"></div>
           <div class="form-row"><label>Hours/Week:</label><input type="number" class="hours-per-week" min="0" step="0.1"></div>
           <div class="form-row"><label>Monthly Income:</label><span class="monthly-display">$0.00</span></div>`;
-        empCont.appendChild(card);
-        if(empCount===maxEmp) addEmp.disabled=true;
+        empC.appendChild(c);
+        if(emp===maxE) addE.disabled=true;
       };
-      addEmp.click();
+      addE.click();
 
-      addOth.onclick = ()=>{
-        othCount++;
-        const row=document.createElement('div'); row.className='form-row';
-        row.innerHTML=`
+      addO.onclick=(()=>{
+        oth++;
+        const r=document.createElement('div');r.className='form-row';
+        r.innerHTML=`
           <select class="other-income-type">
             <option>Social Security</option><option>Retirement</option><option>Disability</option><option>Alimony</option><option>Other Income</option>
           </select>
           <input type="number" class="other-income-input" placeholder="Monthly Amount" min="0" step="0.01">`;
-        othCont.appendChild(row);
-      };
-      addOth.click();
+        othC.appendChild(r);
+      }); addO.click();
 
-      // STEP 2: EXPENSES
-      const expCont    = document.getElementById('expenses-container'),
-            addExp     = document.getElementById('add-expense-btn'),
-            expSel     = document.getElementById('expense-selector'),
-            expTypeSel = document.getElementById('expense-type-select'),
-            expConfirm = document.getElementById('expense-type-confirm-btn');
-      const expCount = {car:0,credit:0,loan:0,'child-support':0,'medical-bills':0},
-            expLimit = {car:2,credit:10,loan:10,'child-support':10,'medical-bills':10};
-      function addStatic(label,id){
-        const card=document.createElement('div'); card.className='card';
-        card.innerHTML=`
-          <div class="section-title">${label}</div>
-          <div class="form-row"><label>Amount:</label><input type="number" id="${id}-input" class="expense-input" placeholder="Monthly ${label}" min="0" step="0.01"></div>`;
-        expCont.appendChild(card);
+      const expC=document.getElementById('expenses-container'),
+            addX=document.getElementById('add-expense-btn'),
+            selX=document.getElementById('expense-selector'),
+            tX=document.getElementById('expense-type-select'),
+            cX=document.getElementById('expense-type-confirm-btn');
+      const cnt={car:0,credit:0,loan:0,'child-support':0,'medical-bills':0},
+            lim={car:2,credit:10,loan:10,'child-support':10,'medical-bills':10};
+      function addStat(l,id){
+        const cd=document.createElement('div');cd.className='card';
+        cd.innerHTML=`
+          <div class="section-title">${l}</div>
+          <div class="form-row"><label>Amount:</label><input type="number" id="${id}-input" class="expense-input" placeholder="Monthly ${l}" min="0" step="0.01"></div>`;
+        expC.appendChild(cd);
       }
-      function addDyn(type){
-        if(expCount[type]>=expLimit[type]) return;
-        expCount[type]++;
+      function addDyn(t){
+        if(cnt[t]>=lim[t]) return; cnt[t]++;
         let lbl;
-        switch(type){
-          case 'car': lbl='Car Payment'; break;
-          case 'credit': lbl='Credit Card'; break;
-          case 'loan': lbl='Loan'; break;
-          case 'child-support': lbl='Child Support'; break;
-          default: lbl='Medical Bills';
-        }
-        const card=document.createElement('div'); card.className='card';
-        card.innerHTML=`
-          <div class="section-title">${lbl} ${expCount[type]}</div>
+        switch(t){case'car':lbl='Car Payment';break;case'credit':lbl='Credit Card';break;case'loan':lbl='Loan';break;case'child-support':lbl='Child Support';break;default:lbl='Medical Bills';}
+        const cd=document.createElement('div');cd.className='card';
+        cd.innerHTML=`
+          <div class="section-title">${lbl} ${cnt[t]}</div>
           <div class="form-row"><label>Amount:</label><input type="number" class="expense-input" placeholder="Monthly ${lbl}" min="0" step="0.01"></div>`;
-        expCont.appendChild(card);
-        if(expCount[type]===expLimit[type]){
-          expTypeSel.querySelector(`option[value="${type}"]`).disabled=true;
-        }
+        expC.appendChild(cd);
+        if(cnt[t]===lim[t]) tX.querySelector(`option[value="${t}"]`).disabled=true;
       }
-      addStatic('Rent','rent');
-      addDyn('car');
-      addDyn('credit');
-      addDyn('loan');
-      addExp.onclick     = ()=> expSel.style.display='flex';
-      expConfirm.onclick = ()=> { addDyn(expTypeSel.value); expSel.style.display='none'; };
+      addStat('Rent','rent');addDyn('car');addDyn('credit');addDyn('loan');
+      addX.onclick=()=>selX.style.display='flex';
+      cX.onclick=()=>{addDyn(tX.value);selX.style.display='none';};
 
-      // TOTS / SUMMARY / CHART
-      const totalIncEl = document.getElementById('total-income'),
-            totalExpEl = document.getElementById('total-expenses'),
-            eqInc      = document.getElementById('eq-income'),
-            eqExp      = document.getElementById('eq-exp'),
-            eqDisp     = document.getElementById('eq-disp'),
-            copyBtn    = document.getElementById('copy-btn'),
-            mortInp    = document.getElementById('mortgage-input'),
-            checkBtn   = document.getElementById('check-afford-btn'),
-            canvas     = document.getElementById('breakdown-chart'),
-            legendEl   = document.getElementById('chart-legend'),
-            explEl     = document.getElementById('affordability-explanation'),
-            resEl      = document.getElementById('affordability-result'),
-            ctx        = canvas.getContext('2d');
+      const tiEl=document.getElementById('total-income'),
+            teEl=document.getElementById('total-expenses'),
+            eInc=document.getElementById('eq-income'),
+            eExp=document.getElementById('eq-exp'),
+            eDisp=document.getElementById('eq-disp'),
+            budH=document.getElementById('budget-health'),
+            copyB=document.getElementById('copy-btn'),
+            mtIn=document.getElementById('mortgage-input'),
+            chkB=document.getElementById('check-afford-btn'),
+            cnv=document.getElementById('breakdown-chart'),
+            lg=document.getElementById('chart-legend'),
+            exEl=document.getElementById('affordability-explanation'),
+            rEl=document.getElementById('affordability-result'),
+            ctx=cnv.getContext('2d');
 
       function updateTotals(){
         let ti=0;
@@ -452,109 +384,106 @@
           const r=inp.valueAsNumber||0,
                 h=document.querySelectorAll('.hours-per-week')[i].valueAsNumber||0,
                 m=r*h*52/12;
-          ti+=m;
-          inp.closest('.card').querySelector('.monthly-display').textContent = '$' + fmt(m);
+          ti+=m; inp.closest('.card').querySelector('.monthly-display').textContent='$'+fmt(m);
         });
-        let to=0;
-        document.querySelectorAll('.other-income-input').forEach(i=> to+=i.valueAsNumber||0);
-        ti+=to; totalIncEl.textContent = '$' + fmt(ti);
+        let oth=0;
+        document.querySelectorAll('.other-income-input').forEach(i=>oth+=i.valueAsNumber||0);
+        ti+=oth; tiEl.textContent='$'+fmt(ti);
 
         let te=0;
-        document.querySelectorAll('.expense-input').forEach(i=> te+=i.valueAsNumber||0);
-        totalExpEl.textContent = '$' + fmt(te);
+        document.querySelectorAll('.expense-input').forEach(i=>te+=i.valueAsNumber||0);
+        teEl.textContent='$'+fmt(te);
 
-        const disp = ti - te;
-        eqInc.textContent  = '$' + fmt(ti);
-        eqExp.textContent  = '$' + fmt(te);
-        eqDisp.textContent = '$' + fmt(disp);
-        eqDisp.style.color = disp < 0 ? varGet('--red') : varGet('--green');
+        const disp=ti-te;
+        eInc.textContent='$'+fmt(ti);
+        eExp.textContent='$'+fmt(te);
+        eDisp.textContent='$'+fmt(disp);
+        if(disp<600) eDisp.style.color=varGet('--red');
+        else eDisp.style.color=varGet('--green');
 
-        return { ti, te, disp };
+        if(disp<600){
+          budH.textContent='⚠️ Your disposable income is under $600 /month. Consider reducing debts or raising income.';
+        } else {
+          budH.textContent='';
+        }
+        return {ti,te,disp};
       }
 
-      copyBtn.onclick = ()=>{
-        const txt = `Income ${eqInc.textContent}  
-Expenses ${eqExp.textContent}  
-Disposable ${eqDisp.textContent}`;
+      copyB.onclick=()=>{
+        const txt=`Income ${eInc.textContent}\nExpenses ${eExp.textContent}\nDisposable ${eDisp.textContent}`;
         navigator.clipboard.writeText(txt);
-        copyBtn.textContent='✅ Copied!';
-        copyBtn.disabled = true;
+        copyB.textContent='✅ Copied!';
+        copyB.disabled=true;
         setTimeout(()=>{
-          copyBtn.textContent='📋 Copy for reference';
-          copyBtn.disabled = false;
-        }, 2000);
+          copyB.textContent='📋 Copy for reference';
+          copyB.disabled=false;
+        },2000);
       };
 
       function drawChart(r,e,s,mtg){
         const data=[r,e,s].map(v=>Math.max(v,0)),
               total=data.reduce((a,b)=>a+b,0),
-              colors=[varGet('--red'),varGet('--yellow'),varGet('--green')],
-              labels=['Rent','Toward Mortgage','Leftover'];
-        ctx.clearRect(0,0,240,240);
-        legendEl.innerHTML='';
+              cols=[varGet('--red'),varGet('--yellow'),varGet('--green')],
+              labs=['Rent','Toward Mortgage','Leftover'];
+        ctx.clearRect(0,0,240,240); lg.innerHTML='';
         if(!total) return;
         let start=-.5*Math.PI;
-        const cx=120, cy=120, rad=100;
-        ctx.lineWidth=24;
+        const cx=120,cy=120,rad=100; ctx.lineWidth=24;
         data.forEach((v,i)=>{
           const slice=v/total*2*Math.PI;
-          ctx.beginPath(); ctx.strokeStyle=colors[i];
-          ctx.arc(cx,cy,rad,start,start+slice);
-          ctx.stroke();
+          ctx.beginPath(); ctx.strokeStyle=cols[i];
+          ctx.arc(cx,cy,rad,start,start+slice); ctx.stroke();
           const pct=(v/total*100).toFixed(0);
           const li=document.createElement('li');
-          li.innerHTML = `<span class="dot" style="background:${colors[i]}"></span>
-                          ${labels[i]} $${fmt(v)} (${pct}%)`;
-          legendEl.appendChild(li);
+          li.innerHTML=`<span class="dot" style="background:${cols[i]}"></span>
+                        ${labs[i]} $${fmt(v)} (${pct}%)`;
+          lg.appendChild(li);
           start+=slice;
         });
         ctx.fillStyle=varGet('--navy');
-        ctx.textAlign='center';
-        ctx.font='600 16px Lato';
-        ctx.fillText('Monthly',cx,cy-8);
-        ctx.fillText('Mortgage',cx,cy+8);
+        ctx.textAlign='center'; ctx.font='600 16px Lato';
+        ctx.fillText('Monthly',cx,cy-8);ctx.fillText('Mortgage',cx,cy+8);
         ctx.font='700 18px Playfair Display';
         ctx.fillText(`$${fmt(mtg)}`,cx,cy+32);
       }
 
-      checkBtn.onclick = ()=>{
-        const { ti, te, disp } = updateTotals(),
-              rentVal  = parseFloat(document.getElementById('rent-input').value)||0,
-              mortgage = mortInp.valueAsNumber||0,
-              needed   = Math.max(mortgage - rentVal,0),
-              spare    = disp - needed,
-              chartLeft= Math.max(spare,0),
-              shortBy  = Math.abs(Math.min(spare,0));
+      chkB.onclick=()=>{
+        const {ti,te,disp}=updateTotals(),
+              mortgage=mtIn.valueAsNumber||0,
+              needed=Math.max(mortgage-(parseFloat(document.getElementById('rent-input').value)||0),0),
+              spare=disp-needed,
+              cl=Math.max(spare,0),
+              shortBy=Math.abs(Math.min(spare,0));
+        drawChart(
+          parseFloat(document.getElementById('rent-input').value)||0,
+          needed,cl,mortgage
+        );
 
-        drawChart(rentVal,needed,chartLeft,mortgage);
-
-        if(spare < 0){
-          explEl.innerHTML = [
-            rentVal>0
-              ? `With your current income, you can’t cover a <span class="toward">$${fmt(mortgage)}</span> mortgage after paying <span class="rent">$${fmt(rentVal)}</span> in rent.`
-              : `With your current income, you can’t cover a <span class="toward">$${fmt(mortgage)}</span> mortgage.`,
+        if(spare<0){
+          exEl.innerHTML=[
+            `You can’t cover a <span class="toward">$${fmt(mortgage)}</span> mortgage.`,
             `You’re short <span class="shortfall">$${fmt(shortBy)}</span> per month.`
           ].map(p=>`<p>${p}</p>`).join('');
-          resEl.textContent='⚠️ Not enough income to afford this payment.';
-          resEl.style.color=varGet('--red');
+          rEl.textContent='⚠️ Not enough income to afford this payment.';
+          rEl.style.color=varGet('--red');
         }
-        else if(spare < 600){
-          explEl.innerHTML = [
-            `You already pay <span class="rent">$${fmt(rentVal)}</span> in rent.`,
-            `A <span class="toward">$${fmt(mortgage)}</span> mortgage will use <span class="toward">$${fmt(needed)}</span> of your disposable income.`,
-            `That leaves only <span class="shortfall">$${fmt(spare)}</span> to spare.`
+        else if(spare<600){
+          exEl.innerHTML=[
+            `You already pay <span class="rent">$${fmt(parseFloat(document.getElementById('rent-input').value)||0)}</span> in rent.`,
+            `A <span class="toward">$${fmt(mortgage)}</span> mortgage uses <span class="toward">$${fmt(needed)}</span> of your disposable income.`,
+            `That leaves <span class="shortfall">$${fmt(spare)}</span> to spare.`
           ].map(p=>`<p>${p}</p>`).join('');
-          resEl.textContent='⚠️ Warning: you’re stretching your budget with under $600 left over.';
-          resEl.style.color=varGet('--red');
+          rEl.textContent='⚠️ Warning: budget is tight—consider reducing debts or boosting income.';
+          rEl.style.color=varGet('--red');
         }
         else {
-          explEl.innerHTML = [
-            `You already pay <span class="rent">$${fmt(rentVal)}</span> in rent.`,
-            `To cover a <span class="toward">$${fmt(mortgage)}</span> mortgage you’ll use <span class="toward">$${fmt(needed)}</span> of your disposable income.`,
-            `That leaves you <span class="leftover">$${fmt(spare)}</span> to spare.`
+          exEl.innerHTML=[
+            `You already pay <span class="rent">$${fmt(parseFloat(document.getElementById('rent-input').value)||0)}</span> in rent.`,
+            `A <span class="toward">$${fmt(mortgage)}</span> mortgage uses <span class="toward">$${fmt(needed)}</span> of your disposable income.`,
+            `That leaves <span class="leftover">$${fmt(spare)}</span> to spare.`
           ].map(p=>`<p>${p}</p>`).join('');
-          resEl.textContent='✅ You could afford this payment!';
-          resEl.style.color=varGet('--green');
+          rEl.textContent='✅ You could afford this payment!';
+          rEl.style.color=varGet('--green');
         }
 
         window.parent.postMessage({
@@ -563,7 +492,7 @@ Disposable ${eqDisp.textContent}`;
         },'*');
       };
 
-      document.body.addEventListener('input',()=>{ if(current<2) updateTotals(); });
+      document.body.addEventListener('input',()=>{ if(cur<2) updateTotals(); });
       updateTotals();
     });
   </script>
