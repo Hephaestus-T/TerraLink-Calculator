@@ -90,7 +90,6 @@
       border-bottom-color:var(--green);
       box-shadow:0 2px 6px rgba(44,156,122,0.3);
     }
-    /*–– Style all <select> elegantly ––*/
     .form-row select {
       -webkit-appearance:none; -moz-appearance:none; appearance:none;
       width:100%;
@@ -166,7 +165,7 @@
     #equation span { margin:0 4px; white-space:nowrap; }
     #eq-income { color:var(--green); font-weight:700; }
     #eq-exp    { color:var(--red);   font-weight:700; }
-    #eq-disp   { color:var(--green); font-weight:700; }
+    #eq-disp   { font-weight:700; } /* color set dynamically */
 
     /*–– Copy link ––*/
     #copy-btn {
@@ -201,7 +200,7 @@
     }
     #affordability-explanation,
     #affordability-result {
-      font-size:1.4rem; /* bigger explanation text */
+      font-size:1.4rem;
       margin-top:32px;
       line-height:1.4;
     }
@@ -316,6 +315,13 @@
   </div>
 
   <script>
+    // helper to format with commas + two decimals
+    function fmt(num) {
+      return num.toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
     const varGet = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -403,17 +409,14 @@
           expTypeSel.querySelector(`option[value="${type}"]`).disabled=true;
         }
       }
-
-      // always show rent, car1, credit1, loan1
       addStatic('Rent','rent');
       addDyn('car');
       addDyn('credit');
       addDyn('loan');
-
       addExp.onclick     = ()=> expSel.style.display='flex';
       expConfirm.onclick = ()=> { addDyn(expTypeSel.value); expSel.style.display='none'; };
 
-      // STEPS 3 & 4: TOTS, SUMMARY, CHART
+      // TOTS / SUMMARY / CHART
       const totalIncEl = document.getElementById('total-income'),
             totalExpEl = document.getElementById('total-expenses'),
             eqInc      = document.getElementById('eq-income'),
@@ -435,20 +438,22 @@
                 h=document.querySelectorAll('.hours-per-week')[i].valueAsNumber||0,
                 m=r*h*52/12;
           ti+=m;
-          inp.closest('.card').querySelector('.monthly-display').textContent=`$${m.toFixed(2)}`;
+          inp.closest('.card').querySelector('.monthly-display').textContent = '$' + fmt(m);
         });
         let to=0;
         document.querySelectorAll('.other-income-input').forEach(i=> to+=i.valueAsNumber||0);
-        ti+=to; totalIncEl.textContent=`$${ti.toFixed(2)}`;
+        ti+=to; totalIncEl.textContent = '$' + fmt(ti);
 
         let te=0;
         document.querySelectorAll('.expense-input').forEach(i=> te+=i.valueAsNumber||0);
-        totalExpEl.textContent=`$${te.toFixed(2)}`;
+        totalExpEl.textContent = '$' + fmt(te);
 
         const disp = ti - te;
-        eqInc.textContent=`$${ti.toFixed(2)}`;
-        eqExp.textContent=`$${te.toFixed(2)}`;
-        eqDisp.textContent=`$${disp.toFixed(2)}`;
+        eqInc.textContent  = '$' + fmt(ti);
+        eqExp.textContent  = '$' + fmt(te);
+        eqDisp.textContent = '$' + fmt(disp);
+        eqDisp.style.color = disp < 0 ? varGet('--red') : varGet('--green');
+
         return { ti, te, disp };
       }
 
@@ -470,15 +475,15 @@
         let start=-.5*Math.PI;
         const cx=120, cy=120, rad=100;
         ctx.lineWidth=24;
-        data.forEach((v,i)=>{
+        data.forEach((v,i)=>{ 
           const slice=v/total*2*Math.PI;
           ctx.beginPath(); ctx.strokeStyle=colors[i];
           ctx.arc(cx,cy,rad,start,start+slice);
           ctx.stroke();
           const pct=(v/total*100).toFixed(0);
           const li=document.createElement('li');
-          li.innerHTML=`<span class="dot" style="background:${colors[i]}"></span>
-                        ${labels[i]} $${v.toFixed(2)} (${pct}%)`;
+          li.innerHTML = `<span class="dot" style="background:${colors[i]}"></span>
+                          ${labels[i]} $${fmt(v)} (${pct}%)`;
           legendEl.appendChild(li);
           start+=slice;
         });
@@ -488,7 +493,7 @@
         ctx.fillText('Monthly',cx,cy-8);
         ctx.fillText('Mortgage',cx,cy+8);
         ctx.font='700 18px Playfair Display';
-        ctx.fillText(`$${mtg.toFixed(0)}`,cx,cy+32);
+        ctx.fillText(`$${fmt(mtg)}`,cx,cy+32);
       }
 
       checkBtn.onclick = ()=>{
@@ -505,32 +510,32 @@
         if(spare < 0){
           if(rentVal > 0){
             explEl.innerHTML=
-              `With your current income, you can’t cover a <span class="toward">$${mortgage.toFixed(2)}</span> mortgage `+
-              `after paying <span class="rent">$${rentVal.toFixed(2)}</span> in rent. `+
-              `You’re short <span class="shortfall">$${shortBy.toFixed(2)}</span> per month.`;
+              `With your current income, you can’t cover a <span class="toward">$${fmt(mortgage)}</span> mortgage `+
+              `after paying <span class="rent">$${fmt(rentVal)}</span> in rent. `+
+              `You’re short <span class="shortfall">$${fmt(shortBy)}</span> per month.`;
           } else {
             explEl.innerHTML=
-              `With your current income, you can’t cover a <span class="toward">$${mortgage.toFixed(2)}</span> mortgage. `+
-              `You’re short <span class="shortfall">$${shortBy.toFixed(2)}</span> per month.`;
+              `With your current income, you can’t cover a <span class="toward">$${fmt(mortgage)}</span> mortgage. `+
+              `You’re short <span class="shortfall">$${fmt(shortBy)}</span> per month.`;
           }
           resEl.textContent='⚠️ Not enough income to afford this payment.';
           resEl.style.color=varGet('--red');
         }
         else if(spare < 600){
           explEl.innerHTML=
-            `You already pay <span class="rent">$${rentVal.toFixed(2)}</span> in rent. `+
-            `A <span class="toward">$${mortgage.toFixed(2)}</span> mortgage will use `+
-            `<span class="toward">$${needed.toFixed(2)}</span> of your disposable income, `+
-            `leaving only <span class="leftover">$${spare.toFixed(2)}</span> to spare.`;
+            `You already pay <span class="rent">$${fmt(rentVal)}</span> in rent. `+
+            `A <span class="toward">$${fmt(mortgage)}</span> mortgage will use `+
+            `<span class="toward">$${fmt(needed)}</span> of your disposable income, `+
+            `leaving only <span class="leftover">$${fmt(spare)}</span> to spare.`;
           resEl.textContent='⚠️ Warning: you’re stretching your budget with under $600 left over.';
           resEl.style.color=varGet('--red');
         }
         else {
           explEl.innerHTML=
-            `You already pay <span class="rent">$${rentVal.toFixed(2)}</span> in rent. `+
-            `To cover a <span class="toward">$${mortgage.toFixed(2)}</span> mortgage you’d use `+
-            `<span class="toward">$${needed.toFixed(2)}</span> from your disposable income, `+
-            `leaving you <span class="leftover">$${spare.toFixed(2)}</span> to spare.`;
+            `You already pay <span class="rent">$${fmt(rentVal)}</span> in rent. `+
+            `To cover a <span class="toward">$${fmt(mortgage)}</span> mortgage you’d use `+
+            `<span class="toward">$${fmt(needed)}</span> from your disposable income, `+
+            `leaving you <span class="leftover">$${fmt(spare)}</span> to spare.`;
           resEl.textContent='✅ You could afford this payment!';
           resEl.style.color=varGet('--green');
         }
