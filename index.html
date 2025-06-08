@@ -191,14 +191,73 @@
     #affordability-explanation .rent     { color:var(--red);   }
     #affordability-explanation .toward   { color:var(--yellow); }
     #affordability-explanation .leftover { color:var(--green); }
-    /* ensure shortfall is red */
     .shortfall { color: var(--red); font-weight:600; }
     #affordability-result { font-size:1.4rem; margin-top:24px; }
 
-    @media(max-width:768px){
-      .form-row { flex-direction:column; align-items:flex-start; }
-      .form-row label { width:auto; margin-bottom:8px; }
-      .wizard-progress { font-size:0.95rem; }
+    /* --------------------------- */
+    /* RESPONSIVE BREAKPOINT RULES */
+    /* --------------------------- */
+
+    /* Phones: under 480px */
+    @media (max-width: 480px) {
+      .wizard-progress { display: none; }
+      .form-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .form-row label {
+        width: auto;
+        margin-bottom: 6px;
+      }
+      .form-row input,
+      .form-row select {
+        width: 100%;
+      }
+      .btn-row {
+        flex-direction: column;
+        gap: 12px;
+      }
+      .btn-row .btn {
+        width: 100%;
+      }
+      #equation {
+        gap: 8px;
+        margin: 24px 0;
+      }
+      .eq-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        font-size: 1.3rem;
+      }
+      .eq-row span:last-child {
+        font-size: 1.6rem;
+      }
+    }
+
+    /* Tablets: 481px to 768px */
+    @media (min-width: 481px) and (max-width: 768px) {
+      .form-row {
+        flex-direction: row;
+        align-items: center;
+      }
+      .form-row label {
+        width: 140px;
+        margin-bottom: 0;
+      }
+      .btn-row {
+        gap: 16px;
+      }
+    }
+
+    /* Desktops: above 769px */
+    @media (min-width: 769px) {
+      body {
+        padding: 40px;
+      }
+      h1 {
+        font-size: 3rem;
+      }
     }
   </style>
 </head>
@@ -215,7 +274,7 @@
 
     <div class="wizard-panels">
 
-      <!-- STEP 1 -->
+      <!-- STEP 1: Income -->
       <section class="panel">
         <div class="section-title">Let’s figure out your monthly income</div>
         <div id="employers-container"></div>
@@ -229,7 +288,7 @@
         <button class="btn btn-gold next-btn">Next →</button>
       </section>
 
-      <!-- STEP 2 -->
+      <!-- STEP 2: Expenses -->
       <section class="panel">
         <div class="section-title">Let’s figure out your monthly expenses</div>
         <div id="expenses-container"></div>
@@ -251,7 +310,7 @@
         <button class="btn btn-gold next-btn">Next →</button>
       </section>
 
-      <!-- STEP 3 -->
+      <!-- STEP 3: Summary -->
       <section class="panel">
         <div class="section-title">Your Disposable Income</div>
         <div id="equation">
@@ -267,7 +326,7 @@
         </div>
       </section>
 
-      <!-- STEP 4 -->
+      <!-- STEP 4: Mortgage -->
       <section class="panel">
         <div class="section-title">Do you have a target mortgage payment?</div>
         <div class="form-row">
