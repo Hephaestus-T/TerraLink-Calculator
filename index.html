@@ -8,8 +8,8 @@
   <style>
     :root {
       --navy:      #1e2d5c;
-      --gold:      #FFA500;
-      --error:     #d9534f;
+      --green:     #2c9c7a;  /* TerraLink green */
+      --red:       #d9534f;  /* TerraLink red */
       --bg-gray:   #f7f9fc;
       --text-dark: #333;
     }
@@ -22,24 +22,27 @@
     }
     h1 {
       font-family:'Playfair Display', serif;
-      font-size:2rem;
+      font-size:2.5rem;
       text-align:center;
-      margin-bottom:30px;
+      margin-bottom:40px;
+      letter-spacing:1px;
     }
-    .wizard { max-width:900px; margin:0 auto; overflow:hidden; }
+    .wizard { max-width:960px; margin:0 auto; overflow:hidden; }
 
     /* Progress Bar */
     .wizard-progress {
       display:flex;
-      margin-bottom:30px;
+      margin-bottom:40px;
     }
     .wizard-step {
       flex:1; text-align:center;
-      padding:10px 0;
+      padding:12px 0;
       font-family:'Playfair Display', serif;
+      font-size:1.1rem;
       color: var(--text-dark);
       cursor:pointer;
       position:relative;
+      transition: color .3s;
     }
     .wizard-step.active {
       color: var(--navy);
@@ -47,127 +50,175 @@
     }
     .wizard-step.active::after {
       content:'';
-      position:absolute; bottom:0; left:15%; right:15%;
+      position:absolute; bottom:0; left:20%; right:20%;
       height:3px;
-      background: var(--gold);
+      background: var(--green);
       border-radius:2px;
     }
 
     /* Panels */
     .wizard-panels {
       display:flex;
-      width:400%;              /* 4 panels */
+      width:400%;
       transition: transform .5s ease;
     }
     .panel {
       flex:1;
-      padding:40px 20px;
+      padding:50px 30px;
     }
 
-    /* Cards and Spacing */
+    /* Cards & Spacing */
     .card {
       background:#fff;
-      border-radius:12px;
-      box-shadow:0 4px 12px rgba(0,0,0,0.05);
-      padding:20px;
-      margin-bottom:30px;
+      border-radius:14px;
+      box-shadow:0 6px 16px rgba(0,0,0,0.05);
+      padding:24px;
+      margin-bottom:36px;
     }
     .section-title {
       font-family:'Playfair Display', serif;
-      font-size:1.5rem;
+      font-size:1.6rem;
       color:var(--navy);
-      margin-bottom:20px;
-      border-bottom:2px solid var(--gold);
-      padding-bottom:6px;
+      margin-bottom:24px;
+      border-bottom:2px solid var(--green);
+      padding-bottom:8px;
+      letter-spacing:0.5px;
     }
 
     /* Form Rows */
     .form-row {
       display:flex; flex-wrap:wrap; align-items:center;
-      margin-bottom:16px;
+      margin-bottom:20px;
     }
     .form-row label {
       width:140px; min-width:120px;
       font-weight:600; color:var(--text-dark);
     }
-    .form-row input, .form-row select {
-      flex:1; padding:10px;
-      border:1px solid #ccc; border-radius:6px;
+    .form-row input,
+    .form-row select {
+      flex:1; padding:10px 8px;
+      border:none; border-bottom:2px solid #ccc;
+      border-radius:0;
       font-size:1rem;
+      transition: border-color .3s, box-shadow .3s;
     }
-    .form-row input:focus, .form-row select:focus {
+    .form-row input:focus,
+    .form-row select:focus {
       outline:none;
-      border-color: var(--gold);
-      box-shadow:0 0 4px rgba(255,165,0,0.5);
+      border-bottom-color: var(--green);
+      box-shadow:0 2px 6px rgba(44,156,122,0.3);
     }
 
     /* Buttons */
     .btn {
-      display:inline-block; padding:10px 16px;
-      border:none; border-radius:6px;
+      display:inline-block; padding:12px 20px;
+      border:none; border-radius:8px;
       font-size:1rem; font-weight:600;
-      cursor:pointer; margin-top:20px;
+      cursor:pointer; margin-top:24px;
       font-family:'Lato', sans-serif;
+      transition: background .3s, transform .2s;
     }
-    .btn-gold { background:var(--gold); color:#fff; }
-    .btn-navy { background:var(--navy); color:#fff; margin-left:12px; }
+    .btn-gold {
+      background: var(--green); /* green as your accent */
+      color: #fff;
+    }
+    .btn-gold:hover { transform: translateY(-2px); }
+    .btn-navy {
+      background: var(--navy);
+      color: #fff;
+      margin-left:16px;
+    }
+    .btn-navy:hover { transform: translateY(-2px); }
 
     /* Income displays */
     .monthly-display {
-      margin-left:auto; font-weight:700;
-      font-size:1.1rem; color:var(--gold);
+      margin-left:auto;
+      font-weight:700;
+      font-size:1.15rem;
+      color:var(--green);
     }
     #total-income {
-      font-size:1.6rem; color:var(--gold); font-weight:700;
+      font-size:1.7rem;
+      color:var(--green);
+      font-weight:700;
+      margin-top:8px;
+    }
+
+    /* Expenses total */
+    .expense-total-row {
+      margin-top:16px;
+      border-top:1px dashed #ddd;
+      padding-top:16px;
+    }
+    #total-expenses {
+      margin-left:auto;
+      font-weight:700;
+      font-size:1.15rem;
+      color:var(--red);
+    }
+    .expense-total-row label {
+      font-size:1rem;
+      font-weight:600;
+      color:var(--text-dark);
     }
 
     /* Summary formula */
     #equation {
-      text-align:center; font-size:1.4rem; margin:30px 0;
+      text-align:center;
+      font-size:1.45rem;
+      margin:40px 0;
+      letter-spacing:0.5px;
     }
     #equation strong { color:var(--navy); }
-    #equation span   { margin:0 8px; color:var(--text-dark); }
+    #equation span   { margin:0 10px; color:var(--text-dark); }
 
     /* Copy link */
     #copy-btn {
-      display:block; margin:auto; margin-top:16px;
+      display:block; margin:auto;
+      margin-top:20px;
       background:none; border:none;
-      color:var(--navy); text-decoration:underline;
-      cursor:pointer; font-size:0.95rem;
+      color:var(--navy);
+      text-decoration:underline;
+      cursor:pointer;
+      font-size:1rem;
+      transition: color .3s;
     }
+    #copy-btn:hover { color:var(--green); }
 
     /* Chart & Legend */
     #chart-container {
       display:flex; flex-wrap:wrap; align-items:center;
-      justify-content:center; gap:20px; margin-top:30px;
+      justify-content:center; gap:24px; margin-top:40px;
     }
     #breakdown-chart {
-      width:220px; height:220px;
+      width:240px; height:240px;
     }
     #chart-legend {
       list-style:none; padding:0; margin:0;
     }
     #chart-legend li {
       display:flex; align-items:center;
-      margin-bottom:8px; font-size:1rem;
+      margin-bottom:10px; font-size:1rem;
       color:var(--text-dark);
     }
     .dot {
       width:14px; height:14px; border-radius:50%;
-      display:inline-block; margin-right:8px;
+      display:inline-block; margin-right:10px;
     }
     #affordability-explanation {
-      font-size:1.1rem; line-height:1.4; margin-top:20px;
+      font-size:1.15rem;
+      line-height:1.5;
+      margin-top:24px;
     }
-    #affordability-explanation .rent     { color:var(--error);   font-weight:700; }
-    #affordability-explanation .toward   { color:var(--gold);    font-weight:700; }
-    #affordability-explanation .leftover { color:var(--gold);    font-weight:700; }
+    #affordability-explanation .rent     { color:var(--red);   font-weight:700; }
+    #affordability-explanation .toward   { color:var(--green); font-weight:700; }
+    #affordability-explanation .leftover { color:var(--green); font-weight:700; }
 
     @media(max-width:768px){
       .form-row { flex-direction:column; align-items:flex-start; }
-      .form-row label { width:auto; margin-bottom:6px; }
-      .wizard-progress { font-size:0.9rem; }
-      #equation { font-size:1.2rem; }
+      .form-row label { width:auto; margin-bottom:8px; }
+      .wizard-progress { font-size:0.95rem; }
+      #equation { font-size:1.25rem; }
     }
   </style>
 </head>
@@ -176,7 +227,7 @@
   <div class="wizard">
     <h1>Find Your Path to Homeownership</h1>
 
-    <!-- Progress Bar -->
+    <!-- 4-step Nav -->
     <div class="wizard-progress">
       <div class="wizard-step" data-step="0">1. Income</div>
       <div class="wizard-step" data-step="1">2. Expenses</div>
@@ -184,7 +235,6 @@
       <div class="wizard-step" data-step="3">4. Mortgage</div>
     </div>
 
-    <!-- Sliding Panels -->
     <div class="wizard-panels">
       <!-- STEP 1: Income -->
       <section class="panel">
@@ -218,6 +268,12 @@
           <button class="btn btn-navy" id="expense-type-confirm-btn">Add</button>
         </div>
 
+        <!-- NEW: Total Monthly Expenses -->
+        <div class="expense-total-row form-row">
+          <label>Total Monthly Expenses:</label>
+          <div id="total-expenses">$0.00</div>
+        </div>
+
         <button class="btn prev-btn">← Back</button>
         <button class="btn btn-gold next-btn">Next →</button>
       </section>
@@ -241,7 +297,7 @@
         <button class="btn btn-gold next-btn">Next →</button>
       </section>
 
-      <!-- STEP 4: Mortgage Check -->
+      <!-- STEP 4: Mortgage -->
       <section class="panel">
         <div class="section-title">Do you have a target mortgage payment?</div>
         <div class="form-row">
@@ -251,7 +307,7 @@
         <button class="btn btn-navy" id="check-afford-btn">Check</button>
 
         <div id="chart-container">
-          <canvas id="breakdown-chart" width="220" height="220"></canvas>
+          <canvas id="breakdown-chart" width="240" height="240"></canvas>
           <ul id="chart-legend"></ul>
         </div>
         <div id="affordability-explanation"></div>
@@ -266,34 +322,33 @@
     const varGet = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
 
     document.addEventListener('DOMContentLoaded', () => {
-      // Wizard navigation
+      // 4-step navigation
       const steps  = [...document.querySelectorAll('.wizard-step')],
             panels = document.querySelector('.wizard-panels');
-      let current  = 0;
+      let   current = 0;
       function showStep(i) {
         current = i;
-        const pct = (i * 100) / steps.length;  // 0,25,50,75 for 4 steps
+        const pct = (i * 100) / steps.length;  // 0,25,50,75
         panels.style.transform = `translateX(-${pct}%)`;
         steps.forEach((s,idx) => s.classList.toggle('active', idx===i));
       }
       steps.forEach(s => s.onclick = () => showStep(parseInt(s.dataset.step)));
       showStep(0);
 
-      // Next/Back
+      // Next / Back
       document.querySelectorAll('.next-btn').forEach(b=>b.onclick = ()=> showStep(Math.min(current+1,3)));
       document.querySelectorAll('.prev-btn').forEach(b=>b.onclick = ()=> showStep(Math.max(current-1,0)));
 
       // Step 1: Income
       let empCount=0, othCount=0, maxEmp=4;
-      const empCont = document.getElementById('employers-container'),
-            addEmp  = document.getElementById('add-employer-btn'),
-            othCont = document.getElementById('other-income-container'),
-            addOth  = document.getElementById('add-other-income-btn');
-
+      const empCont  = document.getElementById('employers-container'),
+            addEmp   = document.getElementById('add-employer-btn'),
+            othCont  = document.getElementById('other-income-container'),
+            addOth   = document.getElementById('add-other-income-btn');
       addEmp.onclick = () => {
         if(empCount>=maxEmp) return;
         empCount++;
-        const card=document.createElement('div'); card.className='card';
+        const card = document.createElement('div'); card.className='card';
         card.innerHTML=`
           <div class="section-title">Employer ${empCount}</div>
           <div class="form-row"><label>Hourly Rate ($):</label><input type="number" class="hourly-rate" min="0" step="0.01"></div>
@@ -303,10 +358,9 @@
         if(empCount===maxEmp) addEmp.disabled=true;
       };
       addEmp.click();
-
-      addOth.onclick = () => {
+      addOth.onclick = ()=> {
         othCount++;
-        const row=document.createElement('div'); row.className='form-row';
+        const row = document.createElement('div'); row.className='form-row';
         row.innerHTML=`
           <select class="other-income-type">
             <option>Social Security</option><option>Retirement</option>
@@ -324,9 +378,8 @@
             expTypeSel = document.getElementById('expense-type-select'),
             expConfirm = document.getElementById('expense-type-confirm-btn');
       const expCount={car:0,credit:0,loan:0}, expLimit={car:2,credit:10,loan:10};
-
       function addStatic(label,id){
-        const card=document.createElement('div'); card.className='card';
+        const card = document.createElement('div'); card.className='card';
         card.innerHTML=`
           <div class="section-title">${label}</div>
           <div class="form-row"><label>Amount:</label>
@@ -337,7 +390,7 @@
       function addDyn(type){
         if(expCount[type]>=expLimit[type]) return;
         expCount[type]++;
-        const lbl = type==='car'?'Car Payment': type==='credit'?'Credit Card':'Loan';
+        const lbl= type==='car'?'Car Payment':type==='credit'?'Credit Card':'Loan';
         const card=document.createElement('div'); card.className='card';
         card.innerHTML=`
           <div class="section-title">${lbl} ${expCount[type]}</div>
@@ -345,7 +398,7 @@
             <input type="number" class="expense-input" placeholder="Monthly ${lbl}" min="0" step="0.01">
           </div>`;
         expCont.appendChild(card);
-        if(expCount[type]===expLimit[type]) {
+        if(expCount[type]===expLimit[type]){
           expTypeSel.querySelector(`option[value="${type}"]`).disabled=true;
         }
       }
@@ -356,6 +409,7 @@
 
       // Totals, Summary & Chart
       const totalIncEl = document.getElementById('total-income'),
+            totalExpEl = document.getElementById('total-expenses'),
             eqInc      = document.getElementById('eq-income'),
             eqExp      = document.getElementById('eq-exp'),
             eqDisp     = document.getElementById('eq-disp'),
@@ -383,6 +437,7 @@
 
         let te=0;
         expCont.querySelectorAll('.expense-input').forEach(i=> te+=i.valueAsNumber||0);
+        totalExpEl.textContent=`$${te.toFixed(2)}`;
 
         const disp = ti - te;
         eqInc.textContent=`$${ti.toFixed(2)}`;
@@ -392,7 +447,7 @@
       }
 
       copyBtn.onclick = ()=>{
-        const txt = `Income ${eqInc.textContent} - Expenses ${eqExp.textContent} = Disposable ${eqDisp.textContent}`;
+        const txt=`Income ${eqInc.textContent} - Expenses ${eqExp.textContent} = Disposable ${eqDisp.textContent}`;
         navigator.clipboard.writeText(txt);
         copyBtn.textContent='✅ Copied!';
         setTimeout(()=> copyBtn.textContent='📋 Copy for reference',1500);
@@ -401,7 +456,7 @@
       function drawChart(r,e,s,mtg){
         const data=[r,e,s].map(v=>Math.max(v,0)),
               total=data.reduce((a,b)=>a+b,0),
-              colors=[varGet('--error'),varGet('--gold'),varGet('--gold')],
+              colors=[varGet('--red'),varGet('--green'),varGet('--green')],
               labels=['Rent','Toward Mortgage','Leftover'];
         ctx.clearRect(0,0,canvas.width,canvas.height);
         legendEl.innerHTML='';
@@ -443,15 +498,15 @@
           `leaving you <span class="leftover">$${spare.toFixed(2)}</span> to spare.`;
         if(mtg <= rentVal + disp){
           resEl.textContent='✅ You could afford this!';
-          resEl.style.color=varGet('--gold');
+          resEl.style.color=varGet('--green');
         } else {
           resEl.textContent='⚠️ This may stretch your current income.';
-          resEl.style.color=varGet('--error');
+          resEl.style.color=varGet('--red');
         }
         drawChart(rentVal, extra, spare, mtg);
         window.parent.postMessage({
           action:'save',
-          data:{income:ti,expenses:te,disposable:disp,targetMortgage:mtg}
+          data:{ income:ti, expenses:te, disposable:disp, targetMortgage:mtg }
         },'*');
       };
 
