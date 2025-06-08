@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      padding: 20px;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    .section {
+      margin-bottom: 30px;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      box-sizing: border-box;
+    }
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .col-half {
+      flex: 1 1 45%;
+    }
+    .result {
+      font-size: 1.2em;
+      font-weight: bold;
+      margin-top: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h2>Let's Calculate Your Monthly Income</h2>
+
+  <div class="section">
+    <h3>Employer Income</h3>
+    <div class="row">
+      <div class="col-half">
+        <label>Employer 1 - Hourly Rate</label>
+        <input type="number" id="rate1" placeholder="e.g. 18.50">
+        <label>Hours/Week</label>
+        <input type="number" id="hours1" placeholder="e.g. 40">
+      </div>
+      <div class="col-half">
+        <label>Employer 2 - Hourly Rate</label>
+        <input type="number" id="rate2" placeholder="e.g. 15.00">
+        <label>Hours/Week</label>
+        <input type="number" id="hours2" placeholder="e.g. 20">
+      </div>
+      <div class="col-half">
+        <label>Employer 3 - Hourly Rate</label>
+        <input type="number" id="rate3">
+        <label>Hours/Week</label>
+        <input type="number" id="hours3">
+      </div>
+      <div class="col-half">
+        <label>Employer 4 - Hourly Rate</label>
+        <input type="number" id="rate4">
+        <label>Hours/Week</label>
+        <input type="number" id="hours4">
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Other Monthly Income</h3>
+    <label>Social Security / Retirement</label>
+    <input type="number" id="social">
+    <label>Disability</label>
+    <input type="number" id="disability">
+    <label>Other Income</label>
+    <input type="number" id="otherIncome">
+  </div>
+
+  <div class="section result" id="totalIncome">Total Monthly Income: $0.00</div>
+
+  <div class="section">
+    <h3>Monthly Expenses</h3>
+    <label>Rent / Mortgage</label>
+    <input type="number" id="rent">
+    <label>Car Payment 1</label>
+    <input type="number" id="car1">
+    <label>Car Payment 2</label>
+    <input type="number" id="car2">
+    <label>Credit Card 1</label>
+    <input type="number" id="cc1">
+    <label>Credit Card 2</label>
+    <input type="number" id="cc2">
+    <label>Credit Card 3</label>
+    <input type="number" id="cc3">
+    <label>Credit Card 4</label>
+    <input type="number" id="cc4">
+    <label>Loan 1</label>
+    <input type="number" id="loan1">
+    <label>Loan 2</label>
+    <input type="number" id="loan2">
+    <label>Loan 3</label>
+    <input type="number" id="loan3">
+    <label>Loan 4</label>
+    <input type="number" id="loan4">
+    <label>Child Support</label>
+    <input type="number" id="childSupport">
+    <label>Medical Bills</label>
+    <input type="number" id="medical">
+  </div>
+
+  <div class="section result" id="totalExpenses">Total Monthly Expenses: $0.00</div>
+  <div class="section result" id="disposableIncome">Disposable Income: $0.00</div>
+
+  <script>
+    const fields = ["rate1","hours1","rate2","hours2","rate3","hours3","rate4","hours4",
+                    "social","disability","otherIncome",
+                    "rent","car1","car2","cc1","cc2","cc3","cc4","loan1","loan2","loan3","loan4","childSupport","medical"];
+    fields.forEach(id => {
+      document.getElementById(id).addEventListener('input', update);
+    });
+
+    function update() {
+      let totalIncome = 0;
+      totalIncome += calcHourly("rate1","hours1");
+      totalIncome += calcHourly("rate2","hours2");
+      totalIncome += calcHourly("rate3","hours3");
+      totalIncome += calcHourly("rate4","hours4");
+      totalIncome += toNumber("social") + toNumber("disability") + toNumber("otherIncome");
+      document.getElementById("totalIncome").innerText = "Total Monthly Income: $" + totalIncome.toFixed(2);
+
+      let totalExpenses = 0;
+      ["rent","car1","car2","cc1","cc2","cc3","cc4","loan1","loan2","loan3","loan4","childSupport","medical"].forEach(id => {
+        totalExpenses += toNumber(id);
+      });
+      document.getElementById("totalExpenses").innerText = "Total Monthly Expenses: $" + totalExpenses.toFixed(2);
+
+      let disposable = totalIncome - totalExpenses;
+      document.getElementById("disposableIncome").innerText = "Disposable Income: $" + disposable.toFixed(2);
+    }
+
+    function calcHourly(rateId, hoursId) {
+      return (toNumber(rateId) * toNumber(hoursId) * 52 / 12);
+    }
+
+    function toNumber(id) {
+      return parseFloat(document.getElementById(id).value) || 0;
+    }
+  </script>
+</body>
+</html>
