@@ -56,7 +56,6 @@
 
     .card {
       background:#fff; border-radius:14px;
-      /* increased padding & luxe shadow */
       padding:32px; margin-bottom:36px;
       box-shadow:0 8px 24px rgba(0,0,0,0.08);
     }
@@ -81,8 +80,7 @@
       flex:1; padding:10px 8px;
       border:none; border-bottom:2px solid #ccc;
       transition:border-color .3s,box-shadow .3s;
-      /* prevent iOS zoom: at least 16px */
-      font-size:1rem;
+      font-size:1rem;            /* prevent iOS zoom */
       line-height:1.4;
     }
     .form-row input:focus,
@@ -96,7 +94,6 @@
       background: var(--bg-gray);
       border:1px solid #ccc; border-radius:8px;
       padding:14px 16px; margin:8px 0 24px;
-      font-size:1rem;
       color:var(--navy);
       box-shadow: inset 0 2px 6px rgba(0,0,0,0.1);
       transition:border-color .25s,box-shadow .25s;
@@ -117,6 +114,12 @@
     .btn-gold:hover { transform:translateY(-2px); }
     .btn-navy { background:var(--navy); color:#fff; margin-left:16px; }
     .btn-navy:hover { transform:translateY(-2px); }
+
+    /* add some breathing room below each “Add” button */
+    #add-employer-btn,
+    #add-other-income-btn {
+      margin-bottom: 2rem;
+    }
 
     .monthly-display {
       margin-left:auto; font-weight:700;
@@ -145,15 +148,16 @@
     #equation .eq-row {
       display:flex; justify-content:space-between;
       width:80%; font-size:1.6rem; line-height:1.2;
-      /* extra breathing room */
       margin-bottom:2rem;
     }
     #equation .eq-row:last-child {
       margin-bottom:0;
     }
-    .eq-row span:last-child { font-weight:700; }
+    /* static colors for first two lines */
+    #eq-income { color: var(--green); }
+    #eq-exp    { color: var(--red);   }
+    /* #eq-disp is toggled in JS */
 
-    /* warning if under $600 */
     #budget-health {
       font-size:1.2rem;
       color: var(--red);
@@ -193,9 +197,7 @@
     .shortfall { color: var(--red); font-weight:600; }
     #affordability-result { font-size:1.4rem; margin-top:24px; }
 
-    /* --------------------------- */
-    /* RESPONSIVE BREAKPOINT RULES */
-    /* --------------------------- */
+    /* Responsive */
     @media (max-width: 480px) {
       .wizard-progress { display: none; }
       .form-row {
@@ -360,7 +362,6 @@
         cur = i;
         panels.style.transform = `translateX(-${(i * 100) / steps.length}%)`;
         steps.forEach((s, j) => s.classList.toggle('active', j === i));
-        // Jump instantly to top of wizard
         document.querySelector('.wizard').scrollIntoView({ block: 'start' });
       }
 
@@ -375,7 +376,6 @@
             othC = document.getElementById('other-income-container'),
             addO = document.getElementById('add-other-income-btn');
 
-      // Per-card pay-type toggle
       addE.onclick = () => {
         if (emp >= maxE) return;
         emp++;
@@ -423,7 +423,6 @@
       };
       addE.click();
 
-      // Other income
       addO.onclick = () => {
         oth++;
         const r = document.createElement('div');
@@ -441,7 +440,6 @@
       };
       addO.click();
 
-      // Expenses logic unchanged…
       const expC = document.getElementById('expenses-container'),
             addX = document.getElementById('add-expense-btn'),
             selX = document.getElementById('expense-selector'),
@@ -480,7 +478,6 @@
       addX.onclick = () => selX.style.display = 'flex';
       cX.onclick = () => { addDyn(tX.value); selX.style.display='none'; };
 
-      // Elements for totals and chart
       const tiEl = document.getElementById('total-income'),
             teEl = document.getElementById('total-expenses'),
             eInc = document.getElementById('eq-income'),
@@ -496,7 +493,6 @@
             rEl  = document.getElementById('affordability-result'),
             ctx  = cnv.getContext('2d');
 
-      // Updated to handle hourly & salary per card
       function updateTotals(){
         let ti = 0;
         document.querySelectorAll('#employers-container .card').forEach(card => {
