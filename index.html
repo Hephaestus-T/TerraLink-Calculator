@@ -19,19 +19,28 @@
     }
     * { box-sizing: border-box; }
     body {
-      margin:0; padding:20px;
+      margin: 0;
+      padding: 20px;
       background: var(--bg-gray);
       color: var(--navy);
       font-family: Lato, sans-serif;
     }
     h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
+      font-size: 3rem;
       text-align: center;
       margin-bottom: 40px;
     }
+
+    /* ---- Prevent iOS Safari auto-zoom on focus ---- */
+    .form-row input,
+    .form-row select {
+      font-size: 16px;
+    }
+
     .wizard { max-width: 960px; margin: 0 auto; overflow: hidden; }
 
+    /* Progress bar */
     .wizard-progress { display:flex; margin-bottom:40px; }
     .wizard-step {
       flex:1; text-align:center; padding:12px 0;
@@ -49,11 +58,13 @@
       border-radius:2px;
     }
 
+    /* Panels container */
     .wizard-panels {
       display:flex; width:400%; transition:transform .5s ease;
     }
     .panel { flex:1; padding:50px 30px; }
 
+    /* Cards */
     .card {
       background:#fff; border-radius:14px;
       box-shadow:0 6px 16px rgba(0,0,0,0.05);
@@ -67,6 +78,7 @@
       padding-bottom:8px;
     }
 
+    /* Form rows */
     .form-row {
       display:flex; flex-wrap:wrap; align-items:center;
       margin-bottom:20px;
@@ -90,7 +102,6 @@
       width:100%; background: var(--bg-gray);
       border:1px solid #ccc; border-radius:8px;
       padding:14px 16px; margin:8px 0 24px;
-      font-size:1.1rem; color:var(--navy);
       box-shadow: inset 0 2px 6px rgba(0,0,0,0.1);
       transition:border-color .25s,box-shadow .25s;
     }
@@ -101,11 +112,12 @@
       outline:none;
     }
 
+    /* Buttons */
     .btn {
       display:inline-block; padding:12px 20px;
       border:none; border-radius:8px;
       font-size:1rem; font-weight:600;
-      cursor:pointer;
+      cursor:pointer; margin-top:24px;
       transition:background .3s,transform .2s;
     }
     .btn-gold { background:var(--green); color:#fff; }
@@ -113,24 +125,26 @@
     .btn-navy { background:var(--navy); color:#fff; margin-left:16px; }
     .btn-navy:hover { transform:translateY(-2px); }
 
-    /* extra spacing below each “+ Add” and totals */
-    #add-employer-btn { margin-bottom:40px; }
-    #add-other-income-btn { margin-bottom:40px; }
-    #add-expense-btn { margin-bottom:40px; }
-    .form-row.total-row { margin-bottom:40px; }
+    #add-employer-btn,
+    #add-other-income-btn,
+    #add-expense-btn { margin-bottom:50px; }
 
+    /* Income totals */
     .monthly-display {
       margin-left:auto; font-weight:700;
       font-size:1.15rem; color:var(--green);
     }
     #total-income {
       font-size:3rem; color:var(--green);
-      font-weight:700; margin-top:8px;
+      font-weight:700; margin-top:16px; /* more breathing room */
+      margin-bottom:40px;               /* space before Next */
     }
 
+    /* Expense totals */
     .expense-total-row {
-      margin-top:16px; border-top:1px dashed #ddd;
-      padding-top:16px;
+      margin-top:24px; /* extra space */
+      border-top:1px dashed #ddd;
+      padding-top:24px;
     }
     #total-expenses {
       margin-left:auto; font-weight:700;
@@ -143,22 +157,31 @@
     /* Summary panel */
     #equation {
       display:flex; flex-direction:column;
-      align-items:center; margin:32px 0;
-      gap:24px; /* ↑ bigger gap between rows */
+      align-items:flex-start; /* align left for clarity */
+      gap:24px;                /* more vertical rhythm */
+      margin:32px 0;
     }
     .eq-row {
       display:flex; justify-content:space-between;
-      width:80%; font-size:1.6rem; line-height:1.2;
+      width:100%; font-size:1.6rem; line-height:1.2;
     }
-    .eq-row span { display:inline-block; }
+    .eq-row span { }
     .eq-row span:last-child { font-weight:700; }
     #eq-income { color:var(--green); }
     #eq-exp    { color:var(--red); }
-    #eq-disp   { /* colored dynamically */ }
+    #eq-disp   { /* set in JS */ }
 
-    /* bigger spacing under copy button */
+    /* Budget warning */
+    #budget-health {
+      font-size:1.2rem;
+      color: var(--red);
+      text-align:center;
+      margin-bottom:24px;
+    }
+
+    /* Copy button */
     .btn-copy {
-      display:inline-block; margin:0 auto 40px;
+      display:inline-block; margin:0 auto 32px;
       padding:10px 18px;
       border:2px solid var(--navy);
       border-radius:6px;
@@ -172,25 +195,32 @@
       transform:translateY(-2px);
     }
 
+    /* Prev/Next row */
     .btn-row {
       display:flex; justify-content:space-between;
-      margin-top:30px;
+      margin-top:40px; /* more breathing room */
     }
 
+    /* Chart */
     #chart-container {
-      display:flex; flex-wrap:wrap; align-items:center; justify-content:center;
-      gap:24px; margin-top:40px; margin-bottom:40px;
+      display:flex; flex-wrap:wrap; align-items:center;
+      justify-content:center; gap:24px; margin-top:40px;
     }
     #breakdown-chart { width:240px; height:240px; }
     #chart-legend { list-style:none; padding:0; margin:0; }
     #chart-legend li { display:flex; align-items:center; margin-bottom:10px; }
     .dot { width:14px; height:14px; border-radius:50%; display:inline-block; margin-right:10px; }
-    #affordability-explanation p { margin:12px 0; font-size:1.4rem; line-height:1.4; }
+    #affordability-explanation p {
+      margin:16px 0; /* extra spacing between paragraphs */
+      font-size:1.4rem; line-height:1.4;
+    }
     #affordability-explanation .rent     { color:var(--red);   }
-    #affordability-explanation .toward   { color:var(--yellow); }
+    #affordability-explanation .toward   { color:var(--yellow);}
     #affordability-explanation .leftover { color:var(--green); }
     .shortfall { color: var(--red); font-weight:600; }
-    #affordability-result { font-size:1.4rem; margin-top:24px; }
+    #affordability-result {
+      font-size:1.4rem; margin-top:24px; text-align:center;
+    }
 
     /* --------------------------- */
     /* RESPONSIVE BREAKPOINT RULES */
@@ -198,62 +228,41 @@
 
     /* Phones: under 480px */
     @media (max-width: 480px) {
-      .wizard-progress { display:none; }
+      .wizard-progress { display: none; }
       .form-row {
-        flex-direction:column; align-items:stretch;
+        flex-direction: column;
+        align-items: stretch;
       }
-      .form-row label {
-        width:auto; margin-bottom:6px;
-      }
-      .form-row input,
-      .form-row select {
-        width:100%;
-      }
+      .form-row label { width: auto; margin-bottom: 6px; }
+      .form-row input, .form-row select { width: 100%; }
       .btn-row {
-        flex-direction:column; gap:12px;
+        flex-direction: column; gap: 12px;
       }
-      .btn-row .btn {
-        width:100%;
-      }
+      .btn-row .btn { width: 100%; }
       #equation {
-        gap:16px; margin:24px 0;
+        gap: 16px; margin: 24px 0;
       }
       .eq-row {
-        flex-direction:column; align-items:flex-start; gap:4px; font-size:1.3rem;
+        flex-direction: column; align-items: flex-start; gap: 8px;
+        font-size: 1.3rem;
       }
-      .eq-row span:last-child {
-        font-size:1.6rem;
-      }
+      .eq-row span:last-child { font-size: 1.6rem; }
     }
 
     /* Tablets: 481px to 768px */
     @media (min-width: 481px) and (max-width: 768px) {
-      .form-row {
-        flex-direction:row; align-items:center;
-      }
-      .form-row label {
-        width:140px; margin-bottom:0;
-      }
-      .btn-row {
-        gap:16px;
-      }
+      .form-row { flex-direction: row; align-items: center; }
+      .form-row label { width: 140px; margin-bottom: 0; }
+      .btn-row { gap: 16px; }
     }
 
-    /* Desktops: above 769px */
-    @media (min-width: 769px) {
-      body {
-        padding:40px;
-      }
-      h1 {
-        font-size:3rem;
-      }
-    }
   </style>
 </head>
 <body>
   <div class="wizard">
     <h1>Find Your Path to Homeownership</h1>
 
+    <!-- Progress bar -->
     <div class="wizard-progress">
       <div class="wizard-step" data-step="0">1. Income</div>
       <div class="wizard-step" data-step="1">2. Expenses</div>
@@ -261,11 +270,13 @@
       <div class="wizard-step" data-step="3">4. Mortgage</div>
     </div>
 
+    <!-- Panels -->
     <div class="wizard-panels">
 
       <!-- STEP 1: Income -->
       <section class="panel">
         <div class="section-title">Let’s figure out your monthly income</div>
+
         <div id="employers-container"></div>
         <button class="btn btn-gold" id="add-employer-btn">+ Add Employer</button>
 
@@ -273,7 +284,7 @@
         <div id="other-income-container"></div>
         <button class="btn btn-gold" id="add-other-income-btn">+ Add Income</button>
 
-        <div class="form-row total-row">
+        <div class="form-row">
           <label>Total Monthly Income:</label>
           <div id="total-income">$0.00</div>
         </div>
@@ -284,9 +295,9 @@
       <!-- STEP 2: Expenses -->
       <section class="panel">
         <div class="section-title">Let’s figure out your monthly expenses</div>
+
         <div id="expenses-container"></div>
         <button class="btn btn-gold" id="add-expense-btn">+ Add Expense</button>
-
         <div id="expense-selector" class="form-row" style="display:none;">
           <select id="expense-type-select">
             <option value="car">Car Payment</option>
@@ -296,7 +307,7 @@
           <button class="btn btn-navy" id="expense-type-confirm-btn">Add</button>
         </div>
 
-        <div class="expense-total-row form-row total-row">
+        <div class="expense-total-row form-row">
           <label>Total Monthly Expenses:</label>
           <div id="total-expenses">$0.00</div>
         </div>
@@ -310,9 +321,18 @@
         <div class="section-title">Your Disposable Income</div>
 
         <div id="equation">
-          <div class="eq-row"><span>Monthly Income</span><span id="eq-income">$0.00</span></div>
-          <div class="eq-row"><span>– Monthly Expenses</span><span id="eq-exp">$0.00</span></div>
-          <div class="eq-row"><span>= Disposable Income</span><span id="eq-disp">$0.00</span></div>
+          <div class="eq-row">
+            <span>Monthly Income</span>
+            <span id="eq-income">$0.00</span>
+          </div>
+          <div class="eq-row">
+            <span>– Monthly Expenses</span>
+            <span id="eq-exp">$0.00</span>
+          </div>
+          <div class="eq-row">
+            <span>= Disposable Income</span>
+            <span id="eq-disp">$0.00</span>
+          </div>
         </div>
 
         <div id="budget-health"></div>
@@ -344,43 +364,50 @@
         <div id="affordability-explanation"></div>
         <div id="affordability-result"></div>
 
-        <div class="btn-row">
-          <button class="btn prev-btn">← Back</button>
-        </div>
+        <button class="btn prev-btn">← Back</button>
       </section>
 
     </div>
   </div>
 
-
   <script>
-    function fmt(n){ return n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}); }
-    const varGet = n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+    // Utility for formatting
+    function fmt(n) {
+      return n.toLocaleString('en-US',{
+        minimumFractionDigits:2,
+        maximumFractionDigits:2
+      });
+    }
+    const varGet = n => getComputedStyle(document.documentElement)
+                                .getPropertyValue(n)
+                                .trim();
 
     document.addEventListener('DOMContentLoaded', () => {
-      const steps = [...document.querySelectorAll('.wizard-step')],
-            panels = document.querySelector('.wizard-panels');
-      let cur = 0;
-      function show(i){
+      const steps   = [...document.querySelectorAll('.wizard-step')],
+            panels  = document.querySelector('.wizard-panels');
+      let   cur     = 0;
+      function show(i) {
         cur = i;
-        panels.style.transform = `translateX(-${i * (100/steps.length)}%)`;
-        steps.forEach((s,j)=> s.classList.toggle('active', j===i) );
-        window.scrollTo(0,0);
+        panels.style.transform = `translateX(-${(i*100)/steps.length}%)`;
+        steps.forEach((s,j) => s.classList.toggle('active', j===i));
+        window.scrollTo(0,0);  // ensure top of panel
       }
-      steps.forEach(s=> s.onclick = ()=> show(+s.dataset.step) );
+      steps.forEach(s => s.onclick = ()=> show(+s.dataset.step));
       show(0);
-
       document.querySelectorAll('.next-btn')
-        .forEach(b=> b.onclick = ()=> show(Math.min(cur+1, steps.length-1)));
+              .forEach(b => b.onclick = ()=> show(Math.min(cur+1,3)));
       document.querySelectorAll('.prev-btn')
-        .forEach(b=> b.onclick = ()=> show(Math.max(cur-1,0)));
+              .forEach(b => b.onclick = ()=> show(Math.max(cur-1,0)));
 
-      // --- Income setup ---
-      let empCount = 0, maxEmp = 4;
-      const empC = document.getElementById('employers-container'),
-            addEmpBtn = document.getElementById('add-employer-btn');
+      // --- STEP 1: Income dynamically ---
+      let empCount = 0, othCount = 0, maxEmp = 4;
+      const empContainer = document.getElementById('employers-container'),
+            addEmpBtn    = document.getElementById('add-employer-btn'),
+            othContainer = document.getElementById('other-income-container'),
+            addOthBtn    = document.getElementById('add-other-income-btn');
+
       addEmpBtn.onclick = () => {
-        if(empCount >= maxEmp) return;
+        if (empCount >= maxEmp) return;
         empCount++;
         const card = document.createElement('div');
         card.className = 'card';
@@ -398,14 +425,13 @@
             <label>Monthly Income:</label>
             <span class="monthly-display">$0.00</span>
           </div>`;
-        empC.appendChild(card);
-        if(empCount === maxEmp) addEmpBtn.disabled = true;
+        empContainer.appendChild(card);
+        if (empCount === maxEmp) addEmpBtn.disabled = true;
       };
       addEmpBtn.click();
 
-      const othC = document.getElementById('other-income-container'),
-            addOthBtn = document.getElementById('add-other-income-btn');
       addOthBtn.onclick = () => {
+        othCount++;
         const row = document.createElement('div');
         row.className = 'form-row';
         row.innerHTML = `
@@ -416,171 +442,203 @@
             <option>Alimony</option>
             <option>Other Income</option>
           </select>
-          <input type="number" class="other-income-input" placeholder="Monthly Amount" min="0" step="0.01">`;
-        othC.appendChild(row);
+          <input type="number" class="other-income-input"
+                 placeholder="Monthly Amount"
+                 min="0" step="0.01">`;
+        othContainer.appendChild(row);
       };
       addOthBtn.click();
 
-      // --- Expenses setup ---
-      let expCounts = {car:0,credit:0,loan:0},
-          expLimits = {car:2,credit:10,loan:10};
-      const expC = document.getElementById('expenses-container'),
-            addExpBtn = document.getElementById('add-expense-btn'),
-            expSel = document.getElementById('expense-selector'),
-            typeSel = document.getElementById('expense-type-select'),
-            typeOk  = document.getElementById('expense-type-confirm-btn');
+      // --- STEP 2: Expenses dynamically ---
+      const expContainer = document.getElementById('expenses-container'),
+            addExpBtn     = document.getElementById('add-expense-btn'),
+            selExp        = document.getElementById('expense-selector'),
+            selType       = document.getElementById('expense-type-select'),
+            confirmExp    = document.getElementById('expense-type-confirm-btn');
 
-      function addExpense(type){
-        if(expCounts[type] >= expLimits[type]) return;
-        expCounts[type]++;
-        let label = type==='car'? 'Car Payment' : type==='credit'? 'Credit Card' : 'Loan';
+      const limits = {car:2, credit:10, loan:10},
+            counts = {car:0, credit:0, loan:0};
+
+      function addExpenseCard(type) {
+        if (counts[type] >= limits[type]) return;
+        counts[type]++;
+        const labels = {car:'Car Payment', credit:'Credit Card', loan:'Loan'};
         const card = document.createElement('div');
         card.className = 'card';
         card.innerHTML = `
-          <div class="section-title">${label} ${expCounts[type]}</div>
+          <div class="section-title">${labels[type]} ${counts[type]}</div>
           <div class="form-row">
             <label>Amount:</label>
-            <input type="number" class="expense-input" placeholder="Monthly ${label}" min="0" step="0.01">
+            <input type="number" class="expense-input"
+                   placeholder="Monthly ${labels[type]}"
+                   min="0" step="0.01">
           </div>`;
-        expC.appendChild(card);
+        expContainer.appendChild(card);
+        if (counts[type] === limits[type]) {
+          selType.querySelector(`option[value="${type}"]`).disabled = true;
+        }
       }
+      // Always include Rent, Car, Credit, Loan initially
+      addExpenseCard('car');
+      addExpenseCard('credit');
+      addExpenseCard('loan');
 
-      // always start with Rent + 1 car + 1 credit + 1 loan
-      addExpense('car'); addExpense('credit'); addExpense('loan');
-      addExpBtn.onclick = ()=> expSel.style.display = 'flex';
-      typeOk.onclick = ()=> { addExpense(typeSel.value); expSel.style.display = 'none'; };
+      addExpBtn.onclick = () => selExp.style.display = 'flex';
+      confirmExp.onclick = () => {
+        addExpenseCard(selType.value);
+        selExp.style.display = 'none';
+      };
 
-      // --- totals / chart / affordability ---
-      const tiEl    = document.getElementById('total-income'),
-            teEl    = document.getElementById('total-expenses'),
-            eInc    = document.getElementById('eq-income'),
-            eExp    = document.getElementById('eq-exp'),
-            eDisp   = document.getElementById('eq-disp'),
-            health  = document.getElementById('budget-health'),
-            copyBtn = document.getElementById('copy-btn'),
-            mtgIn   = document.getElementById('mortgage-input'),
-            chkBtn  = document.getElementById('check-afford-btn'),
-            chart   = document.getElementById('breakdown-chart'),
-            legend  = document.getElementById('chart-legend'),
-            expl    = document.getElementById('affordability-explanation'),
-            result  = document.getElementById('affordability-result'),
-            ctx     = chart.getContext('2d');
+      // --- Totals updater used in Steps 1–3 ---
+      const totalIncEl = document.getElementById('total-income'),
+            totalExpEl = document.getElementById('total-expenses'),
+            eqInc       = document.getElementById('eq-income'),
+            eqExp       = document.getElementById('eq-exp'),
+            eqDisp      = document.getElementById('eq-disp'),
+            budgetWarn  = document.getElementById('budget-health');
 
-      function updateTotals(){
-        let totalInc = 0;
+      function updateTotals() {
+        // Income
+        let income = 0;
         document.querySelectorAll('.hourly-rate').forEach((inp,i)=>{
           const rate = inp.valueAsNumber||0,
                 hrs  = document.querySelectorAll('.hours-per-week')[i].valueAsNumber||0,
-                mon  = rate * hrs * 52/12;
-          totalInc += mon;
-          inp.closest('.card').querySelector('.monthly-display').textContent = '$'+fmt(mon);
+                mon  = rate*hrs*52/12;
+          income += mon;
+          inp.closest('.card').querySelector('.monthly-display').textContent =
+            '$'+fmt(mon);
         });
-        document.querySelectorAll('.other-income-input').forEach(i=> {
-          totalInc += i.valueAsNumber||0;
-        });
-        tiEl.textContent = '$'+fmt(totalInc);
+        document.querySelectorAll('.other-income-input')
+                .forEach(i=> income += i.valueAsNumber||0);
+        totalIncEl.textContent = '$'+fmt(income);
 
-        let totalExp = 0;
-        document.querySelectorAll('.expense-input').forEach(i=> {
-          totalExp += i.valueAsNumber||0;
-        });
-        teEl.textContent = '$'+fmt(totalExp);
+        // Expenses
+        let expenses = 0;
+        document.querySelectorAll('.expense-input')
+                .forEach(i=> expenses += i.valueAsNumber||0);
+        totalExpEl.textContent = '$'+fmt(expenses);
 
-        const disp = totalInc - totalExp;
-        eInc.textContent  = '$'+fmt(totalInc);
-        eExp.textContent  = '$'+fmt(totalExp);
-        eDisp.textContent = '$'+fmt(disp);
-        eDisp.style.color = disp < 0 ? varGet('--red') : varGet('--green');
+        // Summary
+        const disp = income - expenses;
+        eqInc.textContent  = '$'+fmt(income);
+        eqExp.textContent  = '$'+fmt(expenses);
+        eqDisp.textContent = '$'+fmt(disp);
 
-        if(disp < 600){
-          health.textContent = '⚠️ Your disposable income is under $600/mo. Consider reducing debts or increasing income.';
+        if (disp < 0) {
+          eqDisp.style.color = varGet('--red');
         } else {
-          health.textContent = '';
+          eqDisp.style.color = varGet('--green');
         }
-        return { totalInc, totalExp, disp };
+
+        // Warning if under $600
+        if (disp < 600) {
+          budgetWarn.textContent =
+            '⚠️ Your disposable income is under $600/mo. Consider reducing debts or increasing income.';
+        } else {
+          budgetWarn.textContent = '';
+        }
+
+        return {income, expenses, disp};
       }
 
-      copyBtn.onclick = ()=>{
-        const txt = `Monthly Income: ${eInc.textContent}\nMonthly Expenses: ${eExp.textContent}\nDisposable Income: ${eDisp.textContent}`;
-        navigator.clipboard.writeText(txt);
-        copyBtn.textContent = '✅ Copied!';
-        copyBtn.disabled = true;
+      // Copy summary
+      document.getElementById('copy-btn').onclick = () => {
+        const text =
+          `Income: ${eqInc.textContent}\n`+
+          `Expenses: ${eqExp.textContent}\n`+
+          `Disposable: ${eqDisp.textContent}`;
+        navigator.clipboard.writeText(text);
+        const btn = document.getElementById('copy-btn');
+        btn.textContent = '✅ Copied!';
+        btn.disabled = true;
         setTimeout(()=>{
-          copyBtn.textContent = '📋 Copy for reference';
-          copyBtn.disabled = false;
+          btn.textContent = '📋 Copy for reference';
+          btn.disabled = false;
         },2000);
       };
 
-      function drawChart(rent, toward, left, target){
-        const data = [rent, toward, left].map(v=>Math.max(v,0)),
-              total = data.reduce((a,b)=>a+b,0),
-              cols = [varGet('--red'), varGet('--yellow'), varGet('--green')],
+      // --- STEP 4: Mortgage check ---
+      const mortIn     = document.getElementById('mortgage-input'),
+            checkBtn   = document.getElementById('check-afford-btn'),
+            chartCtx   = document.getElementById('breakdown-chart').getContext('2d'),
+            legendEl   = document.getElementById('chart-legend'),
+            explainEl  = document.getElementById('affordability-explanation'),
+            resultEl   = document.getElementById('affordability-result');
+
+      function drawChart(rent, toward, leftover, mortgage) {
+        const data = [rent, toward, leftover].map(v=>Math.max(v,0)),
+              total= data.reduce((a,b)=>a+b,0),
+              cols = [varGet('--red'),varGet('--yellow'),varGet('--green')],
               labs = ['Rent','Toward Mortgage','Leftover'];
-        ctx.clearRect(0,0,240,240);
-        legend.innerHTML = '';
-        if(!total) return;
-        let start = -Math.PI/2;
-        const cx=120, cy=120, rad=100;
-        ctx.lineWidth = 24;
+        chartCtx.clearRect(0,0,240,240);
+        legendEl.innerHTML = '';
+        if (!total) return;
+        let start = -0.5*Math.PI;
+        chartCtx.lineWidth = 24;
         data.forEach((v,i)=>{
-          const slice = v/total * Math.PI*2;
-          ctx.strokeStyle = cols[i];
-          ctx.beginPath();
-          ctx.arc(cx,cy,rad, start, start+slice);
-          ctx.stroke();
-          const pct = Math.round(v/total*100);
+          const slice = v/total*2*Math.PI;
+          chartCtx.beginPath();
+          chartCtx.strokeStyle = cols[i];
+          chartCtx.arc(120,120,100,start,start+slice);
+          chartCtx.stroke();
+          start += slice;
+          const pct = (v/total*100).toFixed(0);
           const li = document.createElement('li');
           li.innerHTML = `<span class="dot" style="background:${cols[i]}"></span>
                           ${labs[i]} $${fmt(v)} (${pct}%)`;
-          legend.appendChild(li);
-          start += slice;
+          legendEl.appendChild(li);
         });
-        ctx.fillStyle = varGet('--navy');
-        ctx.textAlign = 'center';
-        ctx.font = '600 16px Lato';
-        ctx.fillText('Monthly', cx, cy-8);
-        ctx.fillText('Mortgage', cx, cy+8);
-        ctx.font = '700 18px Playfair Display';
-        ctx.fillText(`$${fmt(target)}`, cx, cy+32);
+        chartCtx.fillStyle = varGet('--navy');
+        chartCtx.textAlign = 'center';
+        chartCtx.font = '600 16px Lato';
+        chartCtx.fillText('Monthly',120,112);
+        chartCtx.fillText('Mortgage',120,132);
+        chartCtx.font = '700 18px Playfair Display';
+        chartCtx.fillText(`$${fmt(mortgage)}`,120,160);
       }
 
-      chkBtn.onclick = ()=>{
-        const { totalInc, totalExp, disp } = updateTotals();
-        const rentVal = parseFloat(document.getElementById('rent-input').value)||0;
-        const target  = mtgIn.valueAsNumber||0;
-        const toward  = Math.max(target - rentVal, 0);
-        const left    = Math.max(disp - toward, 0);
-        const shortBy = Math.abs(Math.min(disp - toward, 0));
+      checkBtn.onclick = () => {
+        const {income, expenses, disp} = updateTotals(),
+              mortgage = mortIn.valueAsNumber||0,
+              rentVal  = parseFloat(document.getElementById('rent-input').value)||0,
+              toward   = Math.max(mortgage - rentVal,0),
+              leftover = disp - toward,
+              shortBy  = Math.abs(Math.min(leftover,0));
 
-        drawChart(rentVal, toward, left, target);
+        drawChart(rentVal, toward, Math.max(leftover,0), mortgage);
 
-        if(disp - toward < 0){
-          expl.innerHTML = `
-            <p>You can’t cover a <span class="toward">$${fmt(target)}</span> mortgage.</p>
-            <p>You’re short <span class="shortfall">$${fmt(shortBy)}</span> per month.</p>`;
-          result.textContent = '⚠️ Not enough income to afford this payment.';
-          result.style.color = varGet('--red');
+        // Build explanation
+        if (leftover < 0) {
+          explainEl.innerHTML = (
+            `<p>You can’t cover a <span class="toward">$${fmt(mortgage)}</span> mortgage.</p>`+
+            `<p>You’re short <span class="shortfall">$${fmt(shortBy)}</span> per month.</p>`
+          );
+          resultEl.textContent = '⚠️ Not enough income to afford this payment.';
+          resultEl.style.color = varGet('--red');
         }
-        else if((disp - toward) < 600){
-          expl.innerHTML = `
-            <p>You already pay <span class="rent">$${fmt(rentVal)}</span> in rent.</p>
-            <p>A <span class="toward">$${fmt(target)}</span> mortgage uses <span class="toward">$${fmt(toward)}</span> of your disposable income.</p>
-            <p>That leaves <span class="shortfall">$${fmt(disp - toward)}</span> to spare.</p>`;
-          result.textContent = '⚠️ Warning: budget is tight—consider reducing debts or boosting income.';
-          result.style.color = varGet('--red');
+        else if (leftover < 600) {
+          explainEl.innerHTML = (
+            `<p>You already pay <span class="rent">$${fmt(rentVal)}</span> in rent.</p>`+
+            `<p>A <span class="toward">$${fmt(mortgage)}</span> mortgage uses <span class="toward">$${fmt(toward)}</span> of your disposable income.</p>`+
+            `<p>That leaves <span class="shortfall">$${fmt(leftover)}</span> to spare.</p>`
+          );
+          resultEl.textContent = '⚠️ Warning: budget is tight—consider reducing debts or boosting income.';
+          resultEl.style.color = varGet('--red');
         }
         else {
-          expl.innerHTML = `
-            <p>You already pay <span class="rent">$${fmt(rentVal)}</span> in rent.</p>
-            <p>A <span class="toward">$${fmt(target)}</span> mortgage uses <span class="toward">$${fmt(toward)}</span> of your disposable income.</p>
-            <p>That leaves <span class="leftover">$${fmt(disp - toward)}</span> to spare.</p>`;
-          result.textContent = '✅ You could afford this payment!';
-          result.style.color = varGet('--green');
+          explainEl.innerHTML = (
+            `<p>You already pay <span class="rent">$${fmt(rentVal)}</span> in rent.</p>`+
+            `<p>A <span class="toward">$${fmt(mortgage)}</span> mortgage uses <span class="toward">$${fmt(toward)}</span> of your disposable income.</p>`+
+            `<p>That leaves <span class="leftover">$${fmt(leftover)}</span> to spare.</p>`
+          );
+          resultEl.textContent = '✅ You could afford this payment!';
+          resultEl.style.color = varGet('--green');
         }
       };
 
+      // Recalculate on any input change in steps 1 or 2
       document.body.addEventListener('input', () => {
-        if(cur < 2) updateTotals();
+        if (cur < 2) updateTotals();
       });
       updateTotals();
     });
