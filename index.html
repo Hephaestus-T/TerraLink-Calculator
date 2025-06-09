@@ -116,118 +116,93 @@
     .btn-navy { background: var(--navy); color: #fff; margin-left: 16px; }
     .btn-navy:hover { transform: translateY(-2px); }
 
-    /* Breathing room below Add buttons */
+    /* Spacing under Add buttons */
     #add-employer-btn,
     #add-other-income-btn {
       margin-bottom: 2rem;
     }
 
-    /* Monthly display */
-    .monthly-display {
-      margin-left: auto; font-weight: 700;
-      font-size: 1.15rem; color: var(--green);
-    }
-    #total-income {
-      font-size: 3rem; color: var(--green);
-      font-weight: 700; margin-top: 8px;
-    }
-
-    /* Expenses */
-    .expense-total-row {
-      margin-top: 16px; border-top: 1px dashed #ddd;
-      padding-top: 16px;
-    }
-    #total-expenses {
-      margin-left: auto; font-weight: 700;
-      font-size: 3rem; color: var(--red);
-    }
+    /* Income / expense display */
+    .monthly-display { margin-left: auto; font-weight: 700; font-size: 1.15rem; color: var(--green); }
+    #total-income { font-size: 3rem; color: var(--green); font-weight: 700; margin-top: 8px; }
+    .expense-total-row { margin-top:16px; border-top:1px dashed #ddd; padding-top:16px; }
+    #total-expenses { margin-left:auto; font-size:3rem; color:var(--red); font-weight:700; }
 
     /* Summary */
     #equation {
-      display: flex; flex-direction: column;
-      align-items: center; gap: 16px;
-      margin: 32px 0;
+      display:flex; flex-direction:column; align-items:center;
+      gap:16px; margin:32px 0;
     }
     #equation .eq-row {
-      display: flex; justify-content: space-between;
-      width: 80%; font-size: 1.6rem; line-height: 1.2;
-      margin-bottom: 2rem;
+      display:flex; justify-content:space-between;
+      width:80%; font-size:1.6rem; line-height:1.2;
+      margin-bottom:2rem;
     }
-    #equation .eq-row:last-child { margin-bottom: 0; }
+    #equation .eq-row:last-child { margin-bottom:0; }
     #eq-income { color: var(--green); }
     #eq-exp    { color: var(--red);   }
     /* #eq-disp toggled in JS */
-
     #budget-health {
-      font-size: 1.2rem; color: var(--red);
-      text-align: center; margin-bottom: 16px;
+      font-size:1.2rem; color: var(--red);
+      text-align:center; margin-bottom:16px;
     }
 
     .btn-copy {
-      display: inline-block; margin: 0 auto 32px;
-      padding: 10px 18px;
-      border: 2px solid var(--navy); border-radius: 6px;
-      background: #fff; color: var(--navy);
-      font-size: 1rem; font-weight:600;
-      cursor: pointer;
-      transition: background .3s, color .3s, transform .2s;
+      display:inline-block; margin:0 auto 32px;
+      padding:10px 18px;
+      border:2px solid var(--navy); border-radius:6px;
+      background:#fff; color:var(--navy);
+      font-size:1rem; font-weight:600;
+      cursor:pointer; transition:background .3s,color .3s,transform .2s;
     }
     .btn-copy:hover {
-      background: var(--navy); color: #fff;
-      transform: translateY(-2px);
+      background:var(--navy); color:#fff;
+      transform:translateY(-2px);
     }
-
     .btn-row {
-      display: flex; justify-content: flex-start;
-      gap: 16px; margin-top: 24px;
+      display:flex; justify-content:flex-start;
+      gap:16px; margin-top:24px;
     }
 
     /* Chart */
-    #chart-container {
-      display:flex; flex-wrap: wrap; align-items: center;
-      justify-content: center; gap:24px; margin-top:40px;
-    }
+    #chart-container { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:24px; margin-top:40px;}
     #breakdown-chart { width:240px; height:240px; }
-    #chart-legend { list-style: none; padding:0; margin:0; }
-    #chart-legend li {
-      display:flex; align-items:center; margin-bottom:10px;
-    }
+    #chart-legend { list-style:none; padding:0; margin:0; }
+    #chart-legend li { display:flex; align-items:center; margin-bottom:10px; }
     .dot { width:14px; height:14px; border-radius:50%; margin-right:10px; }
 
     /* Affordability text */
-    #affordability-explanation p {
-      margin:12px 0; font-size:1.4rem; line-height:1.4;
-    }
-    #affordability-explanation .rent { color: var(--red); }
-    #affordability-explanation .toward { color: var(--yellow); }
-    #affordability-explanation .leftover { color: var(--green); }
+    #affordability-explanation p { margin:12px 0; font-size:1.4rem; line-height:1.4; }
+    #affordability-explanation .rent     { color: var(--red);    }
+    #affordability-explanation .toward   { color: var(--yellow); }
+    #affordability-explanation .leftover { color: var(--green);  }
     .shortfall { color: var(--red); font-weight:600; }
     #affordability-result { font-size:1.4rem; margin-top:24px; }
 
-    /* Housing-to-Income Ratio */
+    /* Housing-to-Income Ratio (bigger & more spaced) */
     #housing-ratio-container {
-      margin-top: 2rem; text-align: center;
-      font-size:1.4rem; line-height:1.3;
+      margin-top:3rem; text-align:center;
     }
-    #housing-ratio-container span {
-      font-weight:700; margin-left:0.5rem;
+    #housing-ratio-container > span,
+    #housing-ratio-container > div,
+    #required-income-container > span,
+    #required-income-container > div {
+      display: block;
+      font-size:1.8rem;
+      margin:0.8rem 0;
     }
     .housing-good { color: var(--green); }
     .housing-bad  { color: var(--red);   }
     #housing-ratio-note {
-      margin-top:0.5rem; font-size:1rem; color: var(--text-dark);
+      font-size:1.2rem; margin-bottom:1rem; color: var(--text-dark);
     }
     .disclaimer {
-      margin-top:1rem; font-size:0.9rem; color:#666;
+      font-size:0.9rem; color:#666; margin-top:1rem;
     }
 
     /* Required Income */
     #required-income-container {
-      margin-top:1rem; text-align:center;
-      font-size:1.4rem; line-height:1.3;
-    }
-    #required-income-container span {
-      font-weight:700; margin-left:0.5rem;
+      text-align:center; margin-top:2rem;
     }
 
     /* Responsive */
@@ -259,7 +234,6 @@
 <body>
   <div class="wizard">
     <h1>Find Your Path to Homeownership</h1>
-
     <div class="wizard-progress">
       <div class="wizard-step" data-step="0">1. Income</div>
       <div class="wizard-step" data-step="1">2. Expenses</div>
@@ -321,12 +295,19 @@
       <section class="panel">
         <div class="section-title">Your Disposable Income</div>
         <div id="equation">
-          <div class="eq-row"><span>Monthly Income</span><span id="eq-income">$0.00</span></div>
-          <div class="eq-row"><span>– Monthly Expenses</span><span id="eq-exp">$0.00</span></div>
-          <div class="eq-row"><span>= Disposable Income</span><span id="eq-disp">$0.00</span></div>
+          <div class="eq-row">
+            <span>Monthly Income</span><span id="eq-income">$0.00</span>
+          </div>
+          <div class="eq-row">
+            <span>– Monthly Expenses</span><span id="eq-exp">$0.00</span>
+          </div>
+          <div class="eq-row">
+            <span>= Disposable Income</span><span id="eq-disp">$0.00</span>
+          </div>
         </div>
         <div id="budget-health"></div>
         <button id="copy-btn" class="btn-copy">📋 Copy for reference</button>
+
         <div class="btn-row">
           <button class="btn prev-btn">← Back</button>
           <button class="btn btn-gold next-btn">Next →</button>
@@ -350,6 +331,7 @@
         <div id="affordability-explanation"></div>
         <div id="affordability-result"></div>
 
+        <!-- Housing-to-Income Ratio -->
         <div id="housing-ratio-container">
           Housing-to-Income Ratio:
           <span id="housing-ratio" class="housing-good">0.00%</span>
@@ -359,9 +341,11 @@
           </p>
         </div>
 
+        <!-- Required Income -->
         <div id="required-income-container">
           To hit a 31% housing ratio on this payment, you need a monthly income of
-          <span id="required-income">$0.00</span> (annual: <span id="required-income-annual">$0.00</span>).
+          <span id="required-income">$0.00</span>
+          (annual: <span id="required-income-annual">$0.00</span>).
         </div>
 
         <div class="btn-row">
@@ -374,9 +358,12 @@
 
   <script>
     function fmt(n) {
-      return n.toLocaleString('en-US', { minimumFractionDigits:2, maximumFractionDigits:2 });
+      return n.toLocaleString('en-US',
+        { minimumFractionDigits:2, maximumFractionDigits:2 }
+      );
     }
-    const varGet = name => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    const varGet = name => getComputedStyle(document.documentElement)
+                                  .getPropertyValue(name).trim();
 
     document.addEventListener('DOMContentLoaded', () => {
       const steps = [...document.querySelectorAll('.wizard-step')],
@@ -385,28 +372,30 @@
 
       function show(i) {
         cur = i;
-        panels.style.transform = `translateX(-${(i * 100) / steps.length}%)`;
-        steps.forEach((s, j) => s.classList.toggle('active', j === i));
-        document.querySelector('.wizard').scrollIntoView({ block: 'start' });
+        panels.style.transform = `translateX(-${(i*100)/steps.length}%)`;
+        steps.forEach((s,j) => s.classList.toggle('active', j===i));
+        document.querySelector('.wizard')
+                .scrollIntoView({ block: 'start' });
       }
 
       steps.forEach(s => s.onclick = () => show(+s.dataset.step));
       show(0);
-      document.querySelectorAll('.next-btn').forEach(b => b.onclick = () => show(Math.min(cur + 1, 3)));
-      document.querySelectorAll('.prev-btn').forEach(b => b.onclick = () => show(Math.max(cur - 1, 0)));
+      document.querySelectorAll('.next-btn')
+              .forEach(b => b.onclick = () => show(Math.min(cur+1,3)));
+      document.querySelectorAll('.prev-btn')
+              .forEach(b => b.onclick = () => show(Math.max(cur-1,0)));
 
-      let emp = 0, oth = 0, maxE = 4;
-      const empC = document.getElementById('employers-container'),
-            addE = document.getElementById('add-employer-btn'),
-            othC = document.getElementById('other-income-container'),
-            addO = document.getElementById('add-other-income-btn');
+      let emp=0, oth=0, maxE=4;
+      const empC=document.getElementById('employers-container'),
+            addE=document.getElementById('add-employer-btn'),
+            othC=document.getElementById('other-income-container'),
+            addO=document.getElementById('add-other-income-btn');
 
       addE.onclick = () => {
-        if (emp >= maxE) return;
-        emp++;
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.innerHTML = `
+        if(emp>=maxE) return; emp++;
+        const card=document.createElement('div');
+        card.className='card';
+        card.innerHTML=`
           <div class="section-title">Employer ${emp}</div>
           <div class="form-row">
             <label>Pay Type:</label>
@@ -437,22 +426,23 @@
           </div>`;
         empC.appendChild(card);
 
-        const pt = card.querySelector('.pay-type-select');
-        pt.onchange = () => {
-          card.querySelector('.hourly-group').style.display = pt.value === 'hourly' ? 'block' : 'none';
-          card.querySelector('.salary-group').style.display = pt.value === 'salary' ? 'block' : 'none';
+        const pt=card.querySelector('.pay-type-select');
+        pt.onchange=()=>{
+          card.querySelector('.hourly-group')
+              .style.display = pt.value==='hourly' ? 'block':'none';
+          card.querySelector('.salary-group')
+              .style.display = pt.value==='salary' ? 'block':'none';
           updateTotals();
         };
-
-        if (emp === maxE) addE.disabled = true;
+        if(emp===maxE) addE.disabled=true;
       };
       addE.click();
 
       addO.onclick = () => {
         oth++;
-        const row = document.createElement('div');
-        row.className = 'form-row';
-        row.innerHTML = `
+        const row=document.createElement('div');
+        row.className='form-row';
+        row.innerHTML=`
           <select class="other-income-type">
             <option>Social Security</option>
             <option>Retirement</option>
@@ -465,198 +455,171 @@
       };
       addO.click();
 
-      const expC = document.getElementById('expenses-container'),
-            addX = document.getElementById('add-expense-btn'),
-            selX = document.getElementById('expense-selector'),
-            tX   = document.getElementById('expense-type-select'),
-            cX   = document.getElementById('expense-type-confirm-btn');
-      const cnt = { car:0, credit:0, loan:0, 'child-support':0, 'medical-bills':0 },
-            lim = { car:2, credit:10, loan:10, 'child-support':10, 'medical-bills':10 };
-
-      function addStat(label, id){
-        const cd = document.createElement('div');
-        cd.className = 'card';
-        cd.innerHTML = `
-          <div class="section-title">${label}</div>
+      const expC=document.getElementById('expenses-container'),
+            addX=document.getElementById('add-expense-btn'),
+            selX=document.getElementById('expense-selector'),
+            tX=document.getElementById('expense-type-select'),
+            cX=document.getElementById('expense-type-confirm-btn');
+      const cnt={car:0,credit:0,loan:0,'child-support':0,'medical-bills':0},
+            lim={car:2,credit:10,loan:10,'child-support':10,'medical-bills':10};
+      function addStat(l,id){
+        const cd=document.createElement('div'); cd.className='card';
+        cd.innerHTML=`
+          <div class="section-title">${l}</div>
           <div class="form-row">
             <label>Amount:</label>
-            <input type="number" id="${id}-input" class="expense-input" placeholder="Monthly ${label}" min="0" step="0.01">
+            <input type="number" id="${id}-input" class="expense-input" placeholder="Monthly ${l}" min="0" step="0.01">
           </div>`;
         expC.appendChild(cd);
       }
-
-      function addDyn(type){
-        if (cnt[type] >= lim[type]) return;
-        cnt[type]++;
-        let lbl = type === 'car' ? 'Car Payment'
-                : type === 'credit' ? 'Credit Card'
-                : type === 'loan' ? 'Loan'
-                : type === 'child-support' ? 'Child Support'
-                : 'Medical Bills';
-        const cd = document.createElement('div');
-        cd.className = 'card';
-        cd.innerHTML = `
-          <div class="section-title">${lbl} ${cnt[type]}</div>
+      function addDyn(t){
+        if(cnt[t]>=lim[t]) return; cnt[t]++;
+        let lbl = t==='car'?'Car Payment':t==='credit'?'Credit Card':t==='loan'?'Loan':t==='child-support'?'Child Support':'Medical Bills';
+        const cd=document.createElement('div'); cd.className='card';
+        cd.innerHTML=`
+          <div class="section-title">${lbl} ${cnt[t]}</div>
           <div class="form-row">
             <label>Amount:</label>
             <input type="number" class="expense-input" placeholder="Monthly ${lbl}" min="0" step="0.01">
           </div>`;
         expC.appendChild(cd);
-        if (cnt[type] === lim[type]) {
-          tX.querySelector(`option[value="${type}"]`).disabled = true;
-        }
+        if(cnt[t]===lim[t]) tX.querySelector(`option[value="${t}"]`).disabled=true;
       }
-
       addStat('Rent','rent');
       ['car','credit','loan'].forEach(addDyn);
-      addX.onclick = () => selX.style.display = 'flex';
+      addX.onclick = () => selX.style.display='flex';
       cX.onclick = () => { addDyn(tX.value); selX.style.display='none'; };
 
-      const tiEl  = document.getElementById('total-income'),
-            teEl  = document.getElementById('total-expenses'),
-            eInc  = document.getElementById('eq-income'),
-            eExp  = document.getElementById('eq-exp'),
-            eDisp = document.getElementById('eq-disp'),
-            budH  = document.getElementById('budget-health'),
-            copyB = document.getElementById('copy-btn'),
-            mtIn  = document.getElementById('mortgage-input'),
-            chkB  = document.getElementById('check-afford-btn'),
-            cnv   = document.getElementById('breakdown-chart'),
-            lg    = document.getElementById('chart-legend'),
-            exEl  = document.getElementById('affordability-explanation'),
-            rEl   = document.getElementById('affordability-result'),
-            hrEl  = document.getElementById('housing-ratio'),
-            reqEl = document.getElementById('required-income'),
-            reqAnn= document.getElementById('required-income-annual'),
-            ctx   = cnv.getContext('2d');
+      const tiEl=document.getElementById('total-income'),
+            teEl=document.getElementById('total-expenses'),
+            eInc=document.getElementById('eq-income'),
+            eExp=document.getElementById('eq-exp'),
+            eDisp=document.getElementById('eq-disp'),
+            budH=document.getElementById('budget-health'),
+            copyB=document.getElementById('copy-btn'),
+            mtIn=document.getElementById('mortgage-input'),
+            chkB=document.getElementById('check-afford-btn'),
+            cnv=document.getElementById('breakdown-chart'),
+            lg=document.getElementById('chart-legend'),
+            exEl=document.getElementById('affordability-explanation'),
+            rEl=document.getElementById('affordability-result'),
+            hrEl=document.getElementById('housing-ratio'),
+            reqEl=document.getElementById('required-income'),
+            reqAnn=document.getElementById('required-income-annual'),
+            ctx=cnv.getContext('2d');
 
       function updateTotals(){
-        let totalInc = 0;
+        let totalInc=0;
         document.querySelectorAll('#employers-container .card').forEach(card=>{
-          let m = 0;
-          const hr = card.querySelector('.hourly-rate'),
-                sl = card.querySelector('.yearly-salary');
-          if (hr) {
-            const rate = hr.valueAsNumber||0,
+          const payType = card.querySelector('.pay-type-select').value;
+          let m=0;
+          if(payType==='hourly'){
+            const rate = card.querySelector('.hourly-rate').valueAsNumber||0,
                   hrs  = card.querySelector('.hours-per-week').valueAsNumber||0;
-            m = rate * hrs * 52/12;
-          } else if (sl) {
-            const yearly = sl.valueAsNumber||0;
-            m = yearly / 12;
+            m = rate*hrs*52/12;
+          } else {
+            const yearly = card.querySelector('.yearly-salary').valueAsNumber||0;
+            m = yearly/12;
           }
           totalInc += m;
-          card.querySelector('.monthly-display').textContent = '$' + fmt(m);
+          card.querySelector('.monthly-display').textContent = '$'+fmt(m);
         });
-        let otherSum = 0;
-        document.querySelectorAll('.other-income-input').forEach(i=>otherSum += i.valueAsNumber||0);
+        let otherSum=0;
+        document.querySelectorAll('.other-income-input').forEach(i=>otherSum+=i.valueAsNumber||0);
         totalInc += otherSum;
-        tiEl.textContent = '$' + fmt(totalInc);
+        tiEl.textContent='$'+fmt(totalInc);
 
-        let totalExp = 0;
-        document.querySelectorAll('.expense-input').forEach(i=> totalExp += i.valueAsNumber||0);
-        teEl.textContent = '$' + fmt(totalExp);
+        let totalExp=0;
+        document.querySelectorAll('.expense-input').forEach(i=>totalExp+=i.valueAsNumber||0);
+        teEl.textContent='$'+fmt(totalExp);
 
-        const disp = totalInc - totalExp;
-        eInc.textContent  = '$' + fmt(totalInc);
-        eExp.textContent  = '$' + fmt(totalExp);
-        eDisp.textContent = '$' + fmt(disp);
-        eDisp.style.color = disp < 600 ? varGet('--red') : varGet('--green');
+        const disp=totalInc-totalExp;
+        eInc.textContent='$'+fmt(totalInc);
+        eExp.textContent='$'+fmt(totalExp);
+        eDisp.textContent='$'+fmt(disp);
+        eDisp.style.color=disp<600?varGet('--red'):varGet('--green');
 
-        budH.textContent = disp < 600
-          ? '⚠️ Your disposable income is under $600 /month. Consider reducing debts or raising income.'
-          : '';
+        budH.textContent = disp<600
+          ?'⚠️ Your disposable income is under $600 /month. Consider reducing debts or raising income.'
+          :'';
 
         return { ti: totalInc, te: totalExp, disp };
       }
 
-      copyB.onclick = () => {
+      copyB.onclick=()=>{
         navigator.clipboard.writeText(
           `Income ${eInc.textContent}\nExpenses ${eExp.textContent}\nDisposable ${eDisp.textContent}`
         );
-        copyB.textContent = '✅ Copied!';
-        copyB.disabled = true;
+        copyB.textContent='✅ Copied!'; copyB.disabled=true;
         setTimeout(()=>{
-          copyB.textContent = '📋 Copy for reference';
-          copyB.disabled = false;
-        }, 2000);
+          copyB.textContent='📋 Copy for reference'; copyB.disabled=false;
+        },2000);
       };
 
-      function drawChart(r, e, s, mtg){
-        const data = [r,e,s].map(v=>Math.max(v,0)),
-              total = data.reduce((a,b)=>a+b,0),
-              cols  = [varGet('--red'), varGet('--yellow'), varGet('--green')],
-              labs  = ['Rent','Toward Mortgage','Leftover'];
-        ctx.clearRect(0,0,240,240);
-        lg.innerHTML = '';
-        if (!total) return;
-        let start = -0.5 * Math.PI,
-            cx = 120, cy = 120, rad = 100;
-        ctx.lineWidth = 24;
+      function drawChart(r,e,s,mtg){
+        const data=[r,e,s].map(v=>Math.max(v,0)),
+              total=data.reduce((a,b)=>a+b,0),
+              cols=[varGet('--red'),varGet('--yellow'),varGet('--green')],
+              labs=['Rent','Toward Mortgage','Leftover'];
+        ctx.clearRect(0,0,240,240); lg.innerHTML='';
+        if(!total) return;
+        let start=-.5*Math.PI, cx=120, cy=120, rad=100; ctx.lineWidth=24;
         data.forEach((v,i)=>{
-          const slice = v/total * 2*Math.PI;
-          ctx.beginPath();
-          ctx.strokeStyle = cols[i];
-          ctx.arc(cx,cy,rad,start,start+slice);
-          ctx.stroke();
-          const pct = (v/total*100).toFixed(0);
-          const li = document.createElement('li');
-          li.innerHTML = `<span class="dot" style="background:${cols[i]}"></span>
-                          ${labs[i]} $${fmt(v)} (${pct}%)`;
+          const slice=v/total*2*Math.PI;
+          ctx.beginPath(); ctx.strokeStyle=cols[i];
+          ctx.arc(cx,cy,rad,start,start+slice); ctx.stroke();
+          const pct=(v/total*100).toFixed(0),
+                li=document.createElement('li');
+          li.innerHTML=`<span class="dot" style="background:${cols[i]}"></span>
+                        ${labs[i]} $${fmt(v)} (${pct}%)`;
           lg.appendChild(li);
-          start += slice;
+          start+=slice;
         });
-        ctx.fillStyle = varGet('--navy');
-        ctx.textAlign = 'center';
-        ctx.font = '600 16px Lato';
-        ctx.fillText('Monthly', cx, cy-8);
-        ctx.fillText('Mortgage', cx, cy+8);
-        ctx.font = '700 18px Playfair Display';
-        ctx.fillText(`$${fmt(mtg)}`, cx, cy+32);
+        ctx.fillStyle=varGet('--navy');
+        ctx.textAlign='center'; ctx.font='600 16px Lato';
+        ctx.fillText('Monthly',cx,cy-8);
+        ctx.fillText('Mortgage',cx,cy+8);
+        ctx.font='700 18px Playfair Display';
+        ctx.fillText(`$${fmt(mtg)}`,cx,cy+32);
       }
 
-      chkB.onclick = () => {
+      chkB.onclick=()=>{
         const { ti, te, disp } = updateTotals(),
-              mortgage = mtIn.valueAsNumber||0,
-              rentVal  = parseFloat(document.getElementById('rent-input').value)||0,
-              needed   = Math.max(mortgage - rentVal,0),
-              spare    = disp - needed,
-              shortBy  = Math.abs(Math.min(spare,0)),
-              cl       = Math.max(spare,0);
+              mortgage   = mtIn.valueAsNumber||0,
+              rentVal    = parseFloat(document.getElementById('rent-input').value)||0,
+              needed     = Math.max(mortgage-rentVal,0),
+              spare      = disp-needed,
+              shortBy    = Math.abs(Math.min(spare,0)),
+              cl         = Math.max(spare,0);
 
         drawChart(rentVal,needed,cl,mortgage);
 
-        if (spare < 0) {
-          exEl.innerHTML = `
-            <p>You can’t cover a <span class="toward">$${fmt(mortgage)}</span> mortgage.</p>
-            <p>You’re short <span class="shortfall">$${fmt(shortBy)}</span> per month.</p>`;
-          rEl.textContent = '⚠️ Not enough income to afford this payment.';
-          rEl.style.color = varGet('--red');
-        } else if (spare < 600) {
-          exEl.innerHTML = `
-            <p>You already pay <span class="rent">$${fmt(rentVal)}</span> in rent.</p>
-            <p>A <span class="toward">$${fmt(mortgage)}</span> mortgage uses <span class="toward">$${fmt(needed)}</span> of your disposable income.</p>
-            <p>That leaves <span class="shortfall">$${fmt(spare)}</span> to spare.</p>`;
-          rEl.textContent = '⚠️ Warning: budget is tight—consider reducing debts or boosting income.';
-          rEl.style.color = varGet('--red');
+        if(spare<0){
+          exEl.innerHTML=`<p>You can’t cover a <span class="toward">$${fmt(mortgage)}</span> mortgage.</p>
+                          <p>You’re short <span class="shortfall">$${fmt(shortBy)}</span> per month.</p>`;
+          rEl.textContent='⚠️ Not enough income to afford this payment.'; rEl.style.color=varGet('--red');
+        } else if(spare<600){
+          exEl.innerHTML=`<p>You already pay <span class="rent">$${fmt(rentVal)}</span> in rent.</p>
+                          <p>A <span class="toward">$${fmt(mortgage)}</span> mortgage uses <span class="toward">$${fmt(needed)}</span> of your disposable income.</p>
+                          <p>That leaves <span class="shortfall">$${fmt(spare)}</span> to spare.</p>`;
+          rEl.textContent='⚠️ Warning: budget is tight—consider reducing debts or boosting income.'; rEl.style.color=varGet('--red');
         } else {
-          exEl.innerHTML = `
-            <p>You already pay <span class="rent">$${fmt(rentVal)}</span> in rent.</p>
-            <p>A <span class="toward">$${fmt(mortgage)}</span> mortgage uses <span class="toward">$${fmt(needed)}</span> of your disposable income.</p>
-            <p>That leaves <span class="leftover">$${fmt(spare)}</span> to spare.</p>`;
-          rEl.textContent = '✅ You could afford this payment!';
-          rEl.style.color = varGet('--green');
+          exEl.innerHTML=`<p>You already pay <span class="rent">$${fmt(rentVal)}</span> in rent.</p>
+                          <p>A <span class="toward">$${fmt(mortgage)}</span> mortgage uses <span class="toward">$${fmt(needed)}</span> of your disposable income.</p>
+                          <p>That leaves <span class="leftover">$${fmt(spare)}</span> to spare.</p>`;
+          rEl.textContent='✅ You could afford this payment!'; rEl.style.color=varGet('--green');
         }
 
-        // Housing-to-Income Ratio & Required Income
-        const housingRatio = ti > 0 ? (mortgage / ti) * 100 : 0;
-        hrEl.textContent = fmt(housingRatio) + '%';
-        hrEl.className   = housingRatio <= 31 ? 'housing-good' : 'housing-bad';
+        // Housing‐to‐Income Ratio + Required Income
+        const housingRatio = ti>0 ? (mortgage/ti)*100 : 0;
+        hrEl.textContent = fmt(housingRatio)+'%';
+        hrEl.className = housingRatio<=31 ? 'housing-good':'housing-bad';
 
         const threshold     = 31,
-              requiredM     = threshold > 0 ? mortgage / (threshold/100) : 0,
-              requiredAnnual = requiredM * 12;
-        reqEl.textContent      = '$' + fmt(requiredM);
-        reqAnn.textContent     = '$' + fmt(requiredAnnual);
+              requiredM     = threshold>0 ? mortgage/(threshold/100):0,
+              requiredAnnual= requiredM*12;
+        reqEl.textContent     = '$'+fmt(requiredM);
+        reqAnn.textContent    = '$'+fmt(requiredAnnual);
 
         window.parent.postMessage({
           action: 'save',
@@ -664,7 +627,7 @@
         }, '*');
       };
 
-      document.body.addEventListener('input', () => { if (cur < 2) updateTotals(); });
+      document.body.addEventListener('input',()=>{ if(cur<2) updateTotals(); });
       updateTotals();
     });
   </script>
