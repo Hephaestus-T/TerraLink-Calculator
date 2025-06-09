@@ -19,7 +19,7 @@
     }
     * { box-sizing: border-box; }
     body {
-      margin:0; padding:20px;
+      margin: 0; padding: 20px;
       background: var(--bg-gray);
       color: var(--navy);
       font-family: Lato, sans-serif;
@@ -31,228 +31,228 @@
       margin-bottom: 40px;
     }
     .wizard { max-width: 960px; margin: 0 auto; overflow: hidden; }
-
-    .wizard-progress { display:flex; margin-bottom:40px; }
+    .wizard-progress { display: flex; margin-bottom: 40px; }
     .wizard-step {
-      flex:1; text-align:center; padding:12px 0;
+      flex: 1; text-align: center; padding: 12px 0;
       font-family:'Playfair Display', serif;
-      font-size:1.1rem; color:var(--text-dark);
-      cursor:pointer; position:relative; transition:color .3s;
+      font-size: 1.1rem; color: var(--text-dark);
+      cursor: pointer; position: relative; transition: color .3s;
     }
     .wizard-step.active {
-      color:var(--navy); font-weight:700;
+      color: var(--navy); font-weight: 700;
     }
     .wizard-step.active::after {
-      content:''; position:absolute;
-      bottom:0; left:20%; right:20%;
-      height:3px; background:var(--green);
-      border-radius:2px;
+      content: ''; position: absolute;
+      bottom: 0; left: 20%; right: 20%;
+      height: 3px; background: var(--green);
+      border-radius: 2px;
     }
-
     .wizard-panels {
-      display:flex; width:400%; transition:transform .5s ease;
+      display: flex; width: 400%; transition: transform .5s ease;
     }
-    .panel { flex:1; padding:50px 30px; }
+    .panel { flex: 1; padding: 50px 30px; }
 
+    /* Cards */
     .card {
-      background:#fff; border-radius:14px;
-      padding:32px; margin-bottom:36px;
-      box-shadow:0 8px 24px rgba(0,0,0,0.08);
+      background: #fff; border-radius: 14px;
+      padding: 32px; margin-bottom: 36px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
     }
     .section-title {
       font-family:'Playfair Display', serif;
-      font-size:1.6rem; color:var(--navy);
-      margin-bottom:24px;
-      border-bottom:2px solid var(--green);
-      padding-bottom:8px;
+      font-size: 1.6rem; color: var(--navy);
+      margin-bottom: 24px;
+      border-bottom: 2px solid var(--green);
+      padding-bottom: 8px;
     }
 
+    /* Form rows */
     .form-row {
-      display:flex; flex-wrap:wrap; align-items:center;
-      margin-bottom:20px;
+      display: flex; flex-wrap: wrap; align-items: center;
+      margin-bottom: 20px;
     }
     .form-row label {
-      width:140px; min-width:120px;
-      font-weight:600; color:var(--text-dark);
+      width: 140px; min-width: 120px;
+      font-weight: 600; color: var(--text-dark);
     }
     .form-row input,
     .form-row select {
-      flex:1; padding:10px 8px;
-      border:none; border-bottom:2px solid #ccc;
-      transition:border-color .3s,box-shadow .3s;
-      font-size:1rem;            /* prevent iOS zoom */
-      line-height:1.4;
+      flex: 1; padding: 10px 8px;
+      border: none; border-bottom: 2px solid #ccc;
+      transition: border-color .3s, box-shadow .3s;
+      font-size: 1rem;    /* prevents iOS zoom */
+      line-height: 1.4;
     }
     .form-row input:focus,
     .form-row select:focus {
-      outline:none;
-      border-bottom-color:var(--green);
-      box-shadow:0 2px 6px rgba(44,156,122,0.3);
+      outline: none;
+      border-bottom-color: var(--green);
+      box-shadow: 0 2px 6px rgba(44,156,122,0.3);
     }
     .form-row select {
-      -webkit-appearance:none; -moz-appearance:none; appearance:none;
+      -webkit-appearance: none; -moz-appearance: none; appearance: none;
       background: var(--bg-gray);
-      border:1px solid #ccc; border-radius:8px;
-      padding:14px 16px; margin:8px 0 24px;
-      color:var(--navy);
+      border: 1px solid #ccc; border-radius: 8px;
+      padding: 14px 16px; margin: 8px 0 24px;
+      color: var(--navy);
       box-shadow: inset 0 2px 6px rgba(0,0,0,0.1);
-      transition:border-color .25s,box-shadow .25s;
+      transition: border-color .25s, box-shadow .25s;
     }
     .form-row select:hover {
-      border-color:var(--green);
+      border-color: var(--green);
       box-shadow: inset 0 2px 6px rgba(44,156,122,0.2);
     }
 
+    /* Buttons */
     .btn {
-      display:inline-block; padding:12px 20px;
-      border:none; border-radius:8px;
-      font-size:1rem; font-weight:600;
-      cursor:pointer; margin-top:24px;
-      transition:background .3s,transform .2s;
+      display: inline-block; padding: 12px 20px;
+      border: none; border-radius: 8px;
+      font-size: 1rem; font-weight: 600;
+      cursor: pointer;
+      transition: background .3s, transform .2s;
     }
-    .btn-gold { background:var(--green); color:#fff; }
-    .btn-gold:hover { transform:translateY(-2px); }
-    .btn-navy { background:var(--navy); color:#fff; margin-left:16px; }
-    .btn-navy:hover { transform:translateY(-2px); }
+    .btn-gold { background: var(--green); color: #fff; }
+    .btn-gold:hover { transform: translateY(-2px); }
+    .btn-navy { background: var(--navy); color: #fff; margin-left: 16px; }
+    .btn-navy:hover { transform: translateY(-2px); }
 
-    /* add some breathing room below each “Add” button */
+    /* Breathing room below Add buttons */
     #add-employer-btn,
     #add-other-income-btn {
       margin-bottom: 2rem;
     }
 
+    /* Monthly display */
     .monthly-display {
-      margin-left:auto; font-weight:700;
-      font-size:1.15rem; color:var(--green);
+      margin-left: auto; font-weight: 700;
+      font-size: 1.15rem; color: var(--green);
     }
     #total-income {
-      font-size:3rem; color:var(--green);
-      font-weight:700; margin-top:8px;
+      font-size: 3rem; color: var(--green);
+      font-weight: 700; margin-top: 8px;
     }
 
+    /* Expenses */
     .expense-total-row {
-      margin-top:16px; border-top:1px dashed #ddd;
-      padding-top:16px;
+      margin-top: 16px; border-top: 1px dashed #ddd;
+      padding-top: 16px;
     }
     #total-expenses {
-      margin-left:auto; font-weight:700;
-      font-size:3rem; color:var(--red);
+      margin-left: auto; font-weight: 700;
+      font-size: 3rem; color: var(--red);
     }
 
-    /* Summary panel */
+    /* Summary */
     #equation {
-      display:flex; flex-direction:column;
-      align-items:center; gap:16px;
-      margin:32px 0;
+      display: flex; flex-direction: column;
+      align-items: center; gap: 16px;
+      margin: 32px 0;
     }
     #equation .eq-row {
-      display:flex; justify-content:space-between;
-      width:80%; font-size:1.6rem; line-height:1.2;
-      margin-bottom:2rem;
+      display: flex; justify-content: space-between;
+      width: 80%; font-size: 1.6rem; line-height: 1.2;
+      margin-bottom: 2rem;
     }
-    #equation .eq-row:last-child {
-      margin-bottom:0;
-    }
-    /* static colors for first two lines */
+    #equation .eq-row:last-child { margin-bottom: 0; }
     #eq-income { color: var(--green); }
     #eq-exp    { color: var(--red);   }
-    /* #eq-disp is toggled in JS */
+    /* #eq-disp toggled in JS */
 
     #budget-health {
-      font-size:1.2rem;
-      color: var(--red);
-      text-align:center;
-      margin-bottom:16px;
+      font-size: 1.2rem; color: var(--red);
+      text-align: center; margin-bottom: 16px;
     }
 
     .btn-copy {
-      display:inline-block; margin:0 auto 32px;
-      padding:10px 18px;
-      border:2px solid var(--navy);
-      border-radius:6px;
-      background:#fff; color:var(--navy);
-      font-size:1rem; font-weight:600;
-      cursor:pointer;
-      transition:background .3s,color .3s,transform .2s;
+      display: inline-block; margin: 0 auto 32px;
+      padding: 10px 18px;
+      border: 2px solid var(--navy); border-radius: 6px;
+      background: #fff; color: var(--navy);
+      font-size: 1rem; font-weight:600;
+      cursor: pointer;
+      transition: background .3s, color .3s, transform .2s;
     }
     .btn-copy:hover {
-      background:var(--navy); color:#fff;
-      transform:translateY(-2px);
+      background: var(--navy); color: #fff;
+      transform: translateY(-2px);
     }
 
     .btn-row {
-      display:flex; justify-content:space-between;
-      margin-top:30px;
+      display: flex; justify-content: flex-start;
+      gap: 16px; margin-top: 24px;
     }
 
-    #chart-container { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:24px; margin-top:40px; }
+    /* Chart */
+    #chart-container {
+      display:flex; flex-wrap: wrap; align-items: center;
+      justify-content: center; gap:24px; margin-top:40px;
+    }
     #breakdown-chart { width:240px; height:240px; }
-    #chart-legend { list-style:none; padding:0; margin:0; }
-    #chart-legend li { display:flex; align-items:center; margin-bottom:10px; }
-    .dot { width:14px; height:14px; border-radius:50%; display:inline-block; margin-right:10px; }
-    #affordability-explanation p { margin:12px 0; font-size:1.4rem; line-height:1.4; }
-    #affordability-explanation .rent     { color:var(--red);   }
-    #affordability-explanation .toward   { color:var(--yellow); }
-    #affordability-explanation .leftover { color:var(--green); }
+    #chart-legend { list-style: none; padding:0; margin:0; }
+    #chart-legend li {
+      display:flex; align-items:center; margin-bottom:10px;
+    }
+    .dot { width:14px; height:14px; border-radius:50%; margin-right:10px; }
+
+    /* Affordability text */
+    #affordability-explanation p {
+      margin:12px 0; font-size:1.4rem; line-height:1.4;
+    }
+    #affordability-explanation .rent { color: var(--red); }
+    #affordability-explanation .toward { color: var(--yellow); }
+    #affordability-explanation .leftover { color: var(--green); }
     .shortfall { color: var(--red); font-weight:600; }
     #affordability-result { font-size:1.4rem; margin-top:24px; }
 
+    /* Housing-to-Income Ratio */
+    #housing-ratio-container {
+      margin-top: 2rem; text-align: center;
+      font-size:1.4rem; line-height:1.3;
+    }
+    #housing-ratio-container span {
+      font-weight:700; margin-left:0.5rem;
+    }
+    .housing-good { color: var(--green); }
+    .housing-bad  { color: var(--red);   }
+    #housing-ratio-note {
+      margin-top:0.5rem; font-size:1rem; color: var(--text-dark);
+    }
+    .disclaimer {
+      margin-top:1rem; font-size:0.9rem; color:#666;
+    }
+
+    /* Required Income */
+    #required-income-container {
+      margin-top:1rem; text-align:center;
+      font-size:1.4rem; line-height:1.3;
+    }
+    #required-income-container span {
+      font-weight:700; margin-left:0.5rem;
+    }
+
     /* Responsive */
-    @media (max-width: 480px) {
-      .wizard-progress { display: none; }
-      .form-row {
-        flex-direction: column;
-        align-items: stretch;
-      }
-      .form-row label {
-        width: auto;
-        margin-bottom: 6px;
-      }
-      .form-row input,
-      .form-row select {
-        width: 100%;
-      }
-      .btn-row {
-        flex-direction: column;
-        gap: 12px;
-      }
-      .btn-row .btn {
-        width: 100%;
-      }
-      #equation {
-        gap: 8px;
-        margin: 24px 0;
-      }
+    @media (max-width:480px) {
+      .wizard-progress { display:none; }
+      .form-row { flex-direction:column; align-items:stretch; }
+      .form-row label { width:auto; margin-bottom:6px; }
+      .form-row input, .form-row select { width:100%; }
+      .btn-row { flex-direction:column; gap:12px; }
+      .btn-row .btn { width:auto; }
+      #equation { gap:8px; margin:24px 0; }
       .eq-row {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 4px;
-        font-size: 1.3rem;
+        flex-direction:column; align-items:flex-start;
+        gap:4px; font-size:1.3rem;
       }
-      .eq-row span:last-child {
-        font-size: 1.6rem;
-      }
+      .eq-row span:last-child { font-size:1.6rem; }
     }
-    @media (min-width: 481px) and (max-width: 768px) {
-      .form-row {
-        flex-direction: row;
-        align-items: center;
-      }
-      .form-row label {
-        width: 140px;
-        margin-bottom: 0;
-      }
-      .btn-row {
-        gap: 16px;
-      }
+    @media (min-width:481px) and (max-width:768px) {
+      .form-row { flex-direction:row; align-items:center; }
+      .form-row label { width:140px; margin-bottom:0; }
+      .btn-row { gap:16px; }
     }
-    @media (min-width: 769px) {
-      body {
-        padding: 40px;
-      }
-      h1 {
-        font-size: 3rem;
-      }
+    @media (min-width:769px) {
+      body { padding:40px; }
+      h1 { font-size:3rem; }
     }
   </style>
 </head>
@@ -274,14 +274,19 @@
         <div class="section-title">Let’s figure out your monthly income</div>
         <div id="employers-container"></div>
         <button class="btn btn-gold" id="add-employer-btn">+ Add Employer</button>
+
         <div class="section-title">Other Income</div>
         <div id="other-income-container"></div>
         <button class="btn btn-gold" id="add-other-income-btn">+ Add Income</button>
+
         <div class="form-row">
           <label>Total Monthly Income:</label>
           <div id="total-income">$0.00</div>
         </div>
-        <button class="btn btn-gold next-btn">Next →</button>
+
+        <div class="btn-row">
+          <button class="btn btn-gold next-btn">Next →</button>
+        </div>
       </section>
 
       <!-- STEP 2: Expenses -->
@@ -289,6 +294,7 @@
         <div class="section-title">Let’s figure out your monthly expenses</div>
         <div id="expenses-container"></div>
         <button class="btn btn-gold" id="add-expense-btn">+ Add Expense</button>
+
         <div id="expense-selector" class="form-row" style="display:none;">
           <select id="expense-type-select">
             <option value="car">Car Payment</option>
@@ -299,12 +305,16 @@
           </select>
           <button class="btn btn-navy" id="expense-type-confirm-btn">Add</button>
         </div>
+
         <div class="expense-total-row form-row">
           <label>Total Monthly Expenses:</label>
           <div id="total-expenses">$0.00</div>
         </div>
-        <button class="btn prev-btn">← Back</button>
-        <button class="btn btn-gold next-btn">Next →</button>
+
+        <div class="btn-row">
+          <button class="btn prev-btn">← Back</button>
+          <button class="btn btn-gold next-btn">Next →</button>
+        </div>
       </section>
 
       <!-- STEP 3: Summary -->
@@ -336,9 +346,27 @@
           <canvas id="breakdown-chart" width="240" height="240"></canvas>
           <ul id="chart-legend"></ul>
         </div>
+
         <div id="affordability-explanation"></div>
         <div id="affordability-result"></div>
-        <button class="btn prev-btn">← Back</button>
+
+        <div id="housing-ratio-container">
+          Housing-to-Income Ratio:
+          <span id="housing-ratio" class="housing-good">0.00%</span>
+          <div id="housing-ratio-note">Most lenders prefer this at 31% or below.</div>
+          <p class="disclaimer">
+            This is an estimate; please consult your lender for exact requirements.
+          </p>
+        </div>
+
+        <div id="required-income-container">
+          To hit a 31% housing ratio on this payment, you need a monthly income of
+          <span id="required-income">$0.00</span> (annual: <span id="required-income-annual">$0.00</span>).
+        </div>
+
+        <div class="btn-row">
+          <button class="btn prev-btn">← Back</button>
+        </div>
       </section>
 
     </div>
@@ -346,12 +374,9 @@
 
   <script>
     function fmt(n) {
-      return n.toLocaleString('en-US', {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-      });
+      return n.toLocaleString('en-US', { minimumFractionDigits:2, maximumFractionDigits:2 });
     }
-    const varGet = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+    const varGet = name => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 
     document.addEventListener('DOMContentLoaded', () => {
       const steps = [...document.querySelectorAll('.wizard-step')],
@@ -425,9 +450,9 @@
 
       addO.onclick = () => {
         oth++;
-        const r = document.createElement('div');
-        r.className = 'form-row';
-        r.innerHTML = `
+        const row = document.createElement('div');
+        row.className = 'form-row';
+        row.innerHTML = `
           <select class="other-income-type">
             <option>Social Security</option>
             <option>Retirement</option>
@@ -436,7 +461,7 @@
             <option>Other Income</option>
           </select>
           <input type="number" class="other-income-input" placeholder="Monthly Amount" min="0" step="0.01">`;
-        othC.appendChild(r);
+        othC.appendChild(row);
       };
       addO.click();
 
@@ -445,84 +470,95 @@
             selX = document.getElementById('expense-selector'),
             tX   = document.getElementById('expense-type-select'),
             cX   = document.getElementById('expense-type-confirm-btn');
-      const cnt = {car:0, credit:0, loan:0, 'child-support':0, 'medical-bills':0},
-            lim = {car:2, credit:10, loan:10, 'child-support':10, 'medical-bills':10};
-      function addStat(l,id){
-        const cd=document.createElement('div');cd.className='card';
-        cd.innerHTML=`
-          <div class="section-title">${l}</div>
-          <div class="form-row"><label>Amount:</label><input type="number" id="${id}-input" class="expense-input" placeholder="Monthly ${l}" min="0" step="0.01"></div>`;
+      const cnt = { car:0, credit:0, loan:0, 'child-support':0, 'medical-bills':0 },
+            lim = { car:2, credit:10, loan:10, 'child-support':10, 'medical-bills':10 };
+
+      function addStat(label, id){
+        const cd = document.createElement('div');
+        cd.className = 'card';
+        cd.innerHTML = `
+          <div class="section-title">${label}</div>
+          <div class="form-row">
+            <label>Amount:</label>
+            <input type="number" id="${id}-input" class="expense-input" placeholder="Monthly ${label}" min="0" step="0.01">
+          </div>`;
         expC.appendChild(cd);
       }
-      function addDyn(t){
-        if(cnt[t]>=lim[t]) return; cnt[t]++;
-        let lbl;
-        switch(t){
-          case 'car': lbl='Car Payment'; break;
-          case 'credit': lbl='Credit Card'; break;
-          case 'loan': lbl='Loan'; break;
-          case 'child-support': lbl='Child Support'; break;
-          default: lbl='Medical Bills';
+
+      function addDyn(type){
+        if (cnt[type] >= lim[type]) return;
+        cnt[type]++;
+        let lbl = type === 'car' ? 'Car Payment'
+                : type === 'credit' ? 'Credit Card'
+                : type === 'loan' ? 'Loan'
+                : type === 'child-support' ? 'Child Support'
+                : 'Medical Bills';
+        const cd = document.createElement('div');
+        cd.className = 'card';
+        cd.innerHTML = `
+          <div class="section-title">${lbl} ${cnt[type]}</div>
+          <div class="form-row">
+            <label>Amount:</label>
+            <input type="number" class="expense-input" placeholder="Monthly ${lbl}" min="0" step="0.01">
+          </div>`;
+        expC.appendChild(cd);
+        if (cnt[type] === lim[type]) {
+          tX.querySelector(`option[value="${type}"]`).disabled = true;
         }
-        const cd=document.createElement('div');cd.className='card';
-        cd.innerHTML=`
-          <div class="section-title">${lbl} ${cnt[t]}</div>
-          <div class="form-row"><label>Amount:</label><input type="number" class="expense-input" placeholder="Monthly ${lbl}" min="0" step="0.01"></div>`;
-        expC.appendChild(cd);
-        if(cnt[t]===lim[t]) tX.querySelector(`option[value="${t}"]`).disabled=true;
       }
+
       addStat('Rent','rent');
-      addDyn('car');
-      addDyn('credit');
-      addDyn('loan');
+      ['car','credit','loan'].forEach(addDyn);
       addX.onclick = () => selX.style.display = 'flex';
       cX.onclick = () => { addDyn(tX.value); selX.style.display='none'; };
 
-      const tiEl = document.getElementById('total-income'),
-            teEl = document.getElementById('total-expenses'),
-            eInc = document.getElementById('eq-income'),
-            eExp = document.getElementById('eq-exp'),
-            eDisp= document.getElementById('eq-disp'),
-            budH = document.getElementById('budget-health'),
-            copyB= document.getElementById('copy-btn'),
-            mtIn = document.getElementById('mortgage-input'),
-            chkB = document.getElementById('check-afford-btn'),
-            cnv  = document.getElementById('breakdown-chart'),
-            lg   = document.getElementById('chart-legend'),
-            exEl = document.getElementById('affordability-explanation'),
-            rEl  = document.getElementById('affordability-result'),
-            ctx  = cnv.getContext('2d');
+      const tiEl  = document.getElementById('total-income'),
+            teEl  = document.getElementById('total-expenses'),
+            eInc  = document.getElementById('eq-income'),
+            eExp  = document.getElementById('eq-exp'),
+            eDisp = document.getElementById('eq-disp'),
+            budH  = document.getElementById('budget-health'),
+            copyB = document.getElementById('copy-btn'),
+            mtIn  = document.getElementById('mortgage-input'),
+            chkB  = document.getElementById('check-afford-btn'),
+            cnv   = document.getElementById('breakdown-chart'),
+            lg    = document.getElementById('chart-legend'),
+            exEl  = document.getElementById('affordability-explanation'),
+            rEl   = document.getElementById('affordability-result'),
+            hrEl  = document.getElementById('housing-ratio'),
+            reqEl = document.getElementById('required-income'),
+            reqAnn= document.getElementById('required-income-annual'),
+            ctx   = cnv.getContext('2d');
 
       function updateTotals(){
-        let ti = 0;
-        document.querySelectorAll('#employers-container .card').forEach(card => {
+        let totalInc = 0;
+        document.querySelectorAll('#employers-container .card').forEach(card=>{
           let m = 0;
           const hr = card.querySelector('.hourly-rate'),
                 sl = card.querySelector('.yearly-salary');
-          if(hr){
+          if (hr) {
             const rate = hr.valueAsNumber||0,
                   hrs  = card.querySelector('.hours-per-week').valueAsNumber||0;
             m = rate * hrs * 52/12;
-          } else if(sl){
+          } else if (sl) {
             const yearly = sl.valueAsNumber||0;
             m = yearly / 12;
           }
-          ti += m;
+          totalInc += m;
           card.querySelector('.monthly-display').textContent = '$' + fmt(m);
         });
+        let otherSum = 0;
+        document.querySelectorAll('.other-income-input').forEach(i=>otherSum += i.valueAsNumber||0);
+        totalInc += otherSum;
+        tiEl.textContent = '$' + fmt(totalInc);
 
-        let othSum = 0;
-        document.querySelectorAll('.other-income-input').forEach(i => othSum += i.valueAsNumber||0);
-        ti += othSum;
-        tiEl.textContent = '$' + fmt(ti);
+        let totalExp = 0;
+        document.querySelectorAll('.expense-input').forEach(i=> totalExp += i.valueAsNumber||0);
+        teEl.textContent = '$' + fmt(totalExp);
 
-        let te = 0;
-        document.querySelectorAll('.expense-input').forEach(i => te += i.valueAsNumber||0);
-        teEl.textContent = '$' + fmt(te);
-
-        const disp = ti - te;
-        eInc.textContent = '$' + fmt(ti);
-        eExp.textContent = '$' + fmt(te);
+        const disp = totalInc - totalExp;
+        eInc.textContent  = '$' + fmt(totalInc);
+        eExp.textContent  = '$' + fmt(totalExp);
         eDisp.textContent = '$' + fmt(disp);
         eDisp.style.color = disp < 600 ? varGet('--red') : varGet('--green');
 
@@ -530,38 +566,39 @@
           ? '⚠️ Your disposable income is under $600 /month. Consider reducing debts or raising income.'
           : '';
 
-        return { ti, te, disp };
+        return { ti: totalInc, te: totalExp, disp };
       }
 
       copyB.onclick = () => {
-        const txt = `Income ${eInc.textContent}\nExpenses ${eExp.textContent}\nDisposable ${eDisp.textContent}`;
-        navigator.clipboard.writeText(txt);
+        navigator.clipboard.writeText(
+          `Income ${eInc.textContent}\nExpenses ${eExp.textContent}\nDisposable ${eDisp.textContent}`
+        );
         copyB.textContent = '✅ Copied!';
         copyB.disabled = true;
-        setTimeout(() => {
+        setTimeout(()=>{
           copyB.textContent = '📋 Copy for reference';
           copyB.disabled = false;
         }, 2000);
       };
 
       function drawChart(r, e, s, mtg){
-        const data = [r, e, s].map(v => Math.max(v, 0)),
-              total = data.reduce((a, b) => a + b, 0),
-              cols = [varGet('--red'), varGet('--yellow'), varGet('--green')],
-              labs = ['Rent','Toward Mortgage','Leftover'];
-        ctx.clearRect(0, 0, 240, 240);
+        const data = [r,e,s].map(v=>Math.max(v,0)),
+              total = data.reduce((a,b)=>a+b,0),
+              cols  = [varGet('--red'), varGet('--yellow'), varGet('--green')],
+              labs  = ['Rent','Toward Mortgage','Leftover'];
+        ctx.clearRect(0,0,240,240);
         lg.innerHTML = '';
-        if(!total) return;
+        if (!total) return;
         let start = -0.5 * Math.PI,
             cx = 120, cy = 120, rad = 100;
         ctx.lineWidth = 24;
-        data.forEach((v,i) => {
-          const slice = v/total * 2 * Math.PI;
+        data.forEach((v,i)=>{
+          const slice = v/total * 2*Math.PI;
           ctx.beginPath();
           ctx.strokeStyle = cols[i];
-          ctx.arc(cx, cy, rad, start, start+slice);
+          ctx.arc(cx,cy,rad,start,start+slice);
           ctx.stroke();
-          const pct = (v/total * 100).toFixed(0);
+          const pct = (v/total*100).toFixed(0);
           const li = document.createElement('li');
           li.innerHTML = `<span class="dot" style="background:${cols[i]}"></span>
                           ${labs[i]} $${fmt(v)} (${pct}%)`;
@@ -579,14 +616,14 @@
 
       chkB.onclick = () => {
         const { ti, te, disp } = updateTotals(),
-              mortgage = mtIn.valueAsNumber || 0,
-              rentVal = parseFloat(document.getElementById('rent-input').value) || 0,
-              needed = Math.max(mortgage - rentVal, 0),
-              spare = disp - needed,
-              cl = Math.max(spare, 0),
-              shortBy = Math.abs(Math.min(spare, 0));
+              mortgage = mtIn.valueAsNumber||0,
+              rentVal  = parseFloat(document.getElementById('rent-input').value)||0,
+              needed   = Math.max(mortgage - rentVal,0),
+              spare    = disp - needed,
+              shortBy  = Math.abs(Math.min(spare,0)),
+              cl       = Math.max(spare,0);
 
-        drawChart(rentVal, needed, cl, mortgage);
+        drawChart(rentVal,needed,cl,mortgage);
 
         if (spare < 0) {
           exEl.innerHTML = `
@@ -610,15 +647,24 @@
           rEl.style.color = varGet('--green');
         }
 
+        // Housing-to-Income Ratio & Required Income
+        const housingRatio = ti > 0 ? (mortgage / ti) * 100 : 0;
+        hrEl.textContent = fmt(housingRatio) + '%';
+        hrEl.className   = housingRatio <= 31 ? 'housing-good' : 'housing-bad';
+
+        const threshold     = 31,
+              requiredM     = threshold > 0 ? mortgage / (threshold/100) : 0,
+              requiredAnnual = requiredM * 12;
+        reqEl.textContent      = '$' + fmt(requiredM);
+        reqAnn.textContent     = '$' + fmt(requiredAnnual);
+
         window.parent.postMessage({
           action: 'save',
           data: { income: ti, expenses: te, disposable: disp, targetMortgage: mortgage }
         }, '*');
       };
 
-      document.body.addEventListener('input', () => {
-        if (cur < 2) updateTotals();
-      });
+      document.body.addEventListener('input', () => { if (cur < 2) updateTotals(); });
       updateTotals();
     });
   </script>
