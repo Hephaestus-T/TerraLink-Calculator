@@ -40,7 +40,7 @@
     .wizard {
       max-width: 920px;
       margin: 0 auto;
-      overflow: visible;
+      overflow: hidden; /* Ensures only one panel is visible */
     }
 
     .wizard-progress {
@@ -75,22 +75,28 @@
     }
 
     .wizard-panels {
-      display: flex; width: 400%;
+      display: flex;
+      width: 400%;
       transition: transform .6s var(--panel-transition);
     }
     .panel {
-      flex: 1; padding: 54px 38px 54px 38px;
+      flex: 1 0 100%;
+      min-width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+      padding: 54px 38px 54px 38px;
       background: none;
       min-height: 520px;
       transition: background .45s;
+      display: block;
     }
 
-    /* Cards */
+    /* Cards & Sections */
     .card {
       background: var(--card-bg);
       border-radius: var(--border-radius);
       padding: 42px 32px 36px 32px;
-      margin-bottom: 36px;
+      margin-bottom: 48px;
       box-shadow: var(--card-shadow);
       border: none;
       transition: box-shadow .35s;
@@ -102,10 +108,28 @@
       font-family:'Playfair Display', serif;
       font-size: 1.48rem; color: var(--navy);
       font-weight: 700;
-      margin-bottom: 24px;
+      margin-bottom: 30px;
       border-bottom: 2.5px solid var(--green);
       padding-bottom: 12px;
       letter-spacing: 0.015em;
+    }
+
+    .section-title + .card {
+      margin-bottom: 48px;
+    }
+
+    #add-employer-btn {
+      margin-bottom: 42px;
+    }
+    #other-income-container {
+      margin-bottom: 36px;
+    }
+    #add-other-income-btn {
+      margin-bottom: 30px;
+    }
+    #total-income {
+      margin-top: 18px;
+      margin-bottom: 12px;
     }
 
     /* Form rows */
@@ -137,6 +161,32 @@
       box-shadow: 0 2px 10px rgba(44,156,122,0.09);
     }
 
+    /* Custom modern select dropdown style */
+    .form-row select {
+      background: #fafdff;
+      border: 1.5px solid #e7eaf4;
+      border-radius: 8px;
+      padding: 14px 42px 14px 16px;
+      color: var(--navy);
+      font-size: 1.09rem;
+      font-family: inherit;
+      box-shadow: 0 2px 8px rgba(30,45,92,0.03);
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      position: relative;
+      outline: none;
+      transition: border-color .2s, box-shadow .2s;
+      background-image: url('data:image/svg+xml;utf8,<svg fill="gray" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      background-size: 24px 24px;
+    }
+    .form-row select:focus {
+      border-color: var(--green);
+      box-shadow: 0 4px 16px rgba(44,156,122,0.10);
+    }
+
     /* Buttons */
     .btn {
       display: inline-block; padding: 14px 30px;
@@ -154,7 +204,6 @@
     .btn-navy:hover { background: #23356a; transform: translateY(-2px) scale(1.025); }
     .btn:active { transform: scale(0.99); }
 
-    /* Copy button */
     .btn-copy {
       margin: 0 auto 32px;
       padding: 13px 24px;
@@ -201,33 +250,56 @@
     }
 
     /* Chart */
-    #chart-container { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:32px; margin-top:50px;}
+    #chart-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 38px;
+      margin: 42px 0 32px 0;
+    }
     #breakdown-chart { width:240px; height:240px; }
-    #chart-legend { list-style:none; padding:0; margin:0; }
+    #chart-legend { min-width:200px; list-style:none; padding:0; margin:0; }
     #chart-legend li { display:flex; align-items:center; margin-bottom:11px; font-size:1.09rem;}
     .dot { width:15px; height:15px; border-radius:50%; margin-right:10px; }
 
-    #affordability-explanation p { margin:15px 0; font-size:1.21rem; line-height:1.48; }
+    #affordability-explanation p {
+      margin:15px 0;
+      font-size:1.16rem;
+      line-height:1.48;
+      text-align: center;
+    }
     #affordability-explanation .rent     { color: var(--red);    }
     #affordability-explanation .toward   { color: var(--yellow); }
     #affordability-explanation .leftover { color: var(--green);  }
     .shortfall { color: var(--red); font-weight:700; }
-    #affordability-result { font-size:1.31rem; margin-top:26px; font-weight: 600;}
 
-    /* Housing-to-Income Ratio */
+    #affordability-result {
+      font-size:1.31rem; margin-top:26px; font-weight: 600;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Housing-to-Income Ratio & Required Income Alignment */
+    #housing-ratio-container,
+    #required-income-container {
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
     #housing-ratio-container {
-      margin-top:3.4rem; text-align:center;
+      margin-top: 3.4rem;
     }
-    #housing-ratio-container > span,
-    #housing-ratio-container > div,
-    #required-income-container > span,
-    #required-income-container > div {
-      display: block;
-      font-size:2.1rem;
-      margin:1.12rem 0;
+    #housing-ratio {
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: 0.01em;
+      margin-bottom: 12px;
+      color: var(--green);
     }
-    .housing-good { color: var(--green); }
-    .housing-bad  { color: var(--red);   }
+    .housing-bad {
+      color: var(--red) !important;
+    }
     #housing-ratio-note {
       font-size:1.13rem; margin-bottom:1.2rem; color: #687182;
     }
@@ -235,7 +307,20 @@
       font-size:0.98rem; color:#858ea6; margin-top:1.11rem;
     }
     #required-income-container {
-      text-align:center; margin-top:2.3rem;
+      max-width: 460px;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 2.3rem;
+    }
+    #required-income,
+    #required-income-annual {
+      display: block;
+      font-size: 2.1rem;
+      font-weight: 700;
+      color: var(--green);
+      margin: 8px auto 2px auto;
+      letter-spacing: 0.01em;
     }
 
     /* Responsive */
@@ -337,6 +422,7 @@
       <section class="panel">
         <div class="section-title">Do you have a target mortgage payment?</div>
         <div class="form-row">
+                  <div class="form-row">
           <label>Desired Mortgage:</label>
           <input type="number" id="mortgage-input" placeholder="$ / mo" min="0" step="0.01">
         </div>
@@ -364,17 +450,17 @@
         <div id="required-income-container">
           To hit a 31% housing ratio on this payment, you need a monthly income of
           <span id="required-income">$0.00</span>
-          (annual: <span id="required-income-annual">$0.00</span>).
+          <br>(annual: <span id="required-income-annual">$0.00</span>)
         </div>
 
         <div class="btn-row">
           <button class="btn prev-btn">← Back</button>
         </div>
       </section>
-
     </div>
   </div>
 
+  <!-- JAVASCRIPT -->
   <script>
     function fmt(n) {
       return n.toLocaleString('en-US',
@@ -407,8 +493,8 @@
       let emp=0, oth=0, maxE=4;
       const empC=document.getElementById('employers-container'),
             addE=document.getElementById('add-employer-btn'),
-            othC=document.getElement
-                  addO=document.getElementById('add-other-income-btn');
+            othC=document.getElementById('other-income-container'),
+            addO=document.getElementById('add-other-income-btn');
 
       addE.onclick = () => {
         if(emp>=maxE) return; emp++;
