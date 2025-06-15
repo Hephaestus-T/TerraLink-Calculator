@@ -40,7 +40,7 @@
     .wizard {
       max-width: 920px;
       margin: 0 auto;
-      overflow: hidden; /* Ensures only one panel is visible */
+      overflow: hidden;
     }
 
     .wizard-progress {
@@ -84,11 +84,16 @@
       min-width: 100%;
       max-width: 100%;
       box-sizing: border-box;
-      padding: 54px 38px 54px 38px;
+      padding: 54px 38px 100px 38px;  /* Extra bottom padding */
       background: none;
       min-height: 520px;
       transition: background .45s;
       display: block;
+      overflow: visible;
+    }
+    /* Last card never chopped off */
+    .panel .card:last-child {
+      margin-bottom: 60px;
     }
 
     /* Cards & Sections */
@@ -113,24 +118,13 @@
       padding-bottom: 12px;
       letter-spacing: 0.015em;
     }
-
     .section-title + .card {
       margin-bottom: 48px;
     }
-
-    #add-employer-btn {
-      margin-bottom: 42px;
-    }
-    #other-income-container {
-      margin-bottom: 36px;
-    }
-    #add-other-income-btn {
-      margin-bottom: 30px;
-    }
-    #total-income {
-      margin-top: 18px;
-      margin-bottom: 12px;
-    }
+    #add-employer-btn { margin-bottom: 42px; }
+    #other-income-container { margin-bottom: 36px; }
+    #add-other-income-btn { margin-bottom: 30px; }
+    #total-income { margin-top: 18px; margin-bottom: 12px; }
 
     /* Form rows */
     .form-row {
@@ -142,10 +136,12 @@
       width: 140px; min-width: 120px;
       font-weight: 600; color: var(--text-dark);
       font-size: 1.07rem;
+      flex: none;
     }
     .form-row input,
     .form-row select {
-      flex: 1; padding: 14px 11px;
+      flex: 1 1 0;
+      padding: 14px 11px;
       border: none;
       border-bottom: 2px solid #e7eaf4;
       transition: border-color .3s, box-shadow .3s;
@@ -153,6 +149,7 @@
       background: #fafdff;
       border-radius: 7px 7px 0 0;
       margin-bottom: 3px;
+      max-width: 340px;
     }
     .form-row input:focus,
     .form-row select:focus {
@@ -181,6 +178,9 @@
       background-repeat: no-repeat;
       background-position: right 12px center;
       background-size: 24px 24px;
+      width: 100%;
+      min-width: 180px;
+      max-width: 260px; /* Dropdown is never super wide! */
     }
     .form-row select:focus {
       border-color: var(--green);
@@ -203,7 +203,6 @@
     .btn-navy { background: var(--navy); color: #fff; }
     .btn-navy:hover { background: #23356a; transform: translateY(-2px) scale(1.025); }
     .btn:active { transform: scale(0.99); }
-
     .btn-copy {
       margin: 0 auto 32px;
       padding: 13px 24px;
@@ -218,7 +217,6 @@
       background:var(--navy); color:#fff;
       transform:translateY(-2px) scale(1.04);
     }
-
     .btn-row {
       display: flex; justify-content: flex-start;
       gap: 22px; margin-top: 34px;
@@ -326,12 +324,25 @@
     /* Responsive */
     @media (max-width:800px) {
       body { padding: 12px 1vw;}
-      .panel { padding: 30px 6vw;}
+      .panel { padding: 30px 6vw 70px 6vw;}
     }
     @media (max-width:600px) {
       .wizard-progress { display:none; }
-      .panel { padding: 20px 5vw;}
+      .panel { padding: 20px 5vw 70px 5vw;}
       h1 { font-size: 2rem; }
+    }
+    @media (max-width:480px) {
+      .form-row { flex-direction: column; align-items: stretch; }
+      .form-row label { width: auto; margin-bottom: 6px; }
+      .form-row input, .form-row select { width: 100%; max-width: 100%; }
+      .btn-row { flex-direction: column; gap: 12px; }
+      .btn-row .btn { width: auto; }
+      #equation { gap: 8px; margin: 24px 0; }
+      .eq-row {
+        flex-direction: column; align-items: flex-start;
+        gap: 4px; font-size: 1.3rem;
+      }
+      .eq-row span:last-child { font-size: 1.6rem; }
     }
   </style>
 </head>
@@ -422,7 +433,6 @@
       <section class="panel">
         <div class="section-title">Do you have a target mortgage payment?</div>
         <div class="form-row">
-                  <div class="form-row">
           <label>Desired Mortgage:</label>
           <input type="number" id="mortgage-input" placeholder="$ / mo" min="0" step="0.01">
         </div>
@@ -460,7 +470,6 @@
     </div>
   </div>
 
-  <!-- JAVASCRIPT -->
   <script>
     function fmt(n) {
       return n.toLocaleString('en-US',
