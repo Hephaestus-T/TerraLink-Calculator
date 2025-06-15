@@ -42,7 +42,6 @@
       margin: 0 auto;
       overflow: hidden;
     }
-
     .wizard-progress {
       display: flex;
       margin-bottom: 48px;
@@ -73,30 +72,29 @@
       border-radius: 2px;
       transition: background .25s;
     }
-
     .wizard-panels {
       display: flex;
       width: 400%;
       transition: transform .6s var(--panel-transition);
+      position: relative;
     }
     .panel {
-      flex: 1 0 100%;
+      flex: 0 0 100%;
       min-width: 100%;
       max-width: 100%;
       box-sizing: border-box;
-      padding: 54px 38px 100px 38px;  /* Extra bottom padding */
+      padding: 54px 38px 100px 38px;
       background: none;
       min-height: 520px;
       transition: background .45s;
-      display: block;
+      /* display: block;  <-- DO NOT add! */
       overflow: visible;
+      position: relative;
+      z-index: 1;
     }
-    /* Last card never chopped off */
     .panel .card:last-child {
       margin-bottom: 60px;
     }
-
-    /* Cards & Sections */
     .card {
       background: var(--card-bg);
       border-radius: var(--border-radius);
@@ -125,8 +123,6 @@
     #other-income-container { margin-bottom: 36px; }
     #add-other-income-btn { margin-bottom: 30px; }
     #total-income { margin-top: 18px; margin-bottom: 12px; }
-
-    /* Form rows */
     .form-row {
       display: flex; flex-wrap: wrap; align-items: center;
       margin-bottom: 26px;
@@ -157,8 +153,6 @@
       border-bottom-color: var(--green);
       box-shadow: 0 2px 10px rgba(44,156,122,0.09);
     }
-
-    /* Custom modern select dropdown style */
     .form-row select {
       background: #fafdff;
       border: 1.5px solid #e7eaf4;
@@ -180,14 +174,12 @@
       background-size: 24px 24px;
       width: 100%;
       min-width: 180px;
-      max-width: 260px; /* Dropdown is never super wide! */
+      max-width: 260px;
     }
     .form-row select:focus {
       border-color: var(--green);
       box-shadow: 0 4px 16px rgba(44,156,122,0.10);
     }
-
-    /* Buttons */
     .btn {
       display: inline-block; padding: 14px 30px;
       border: none; border-radius: 12px;
@@ -221,14 +213,10 @@
       display: flex; justify-content: flex-start;
       gap: 22px; margin-top: 34px;
     }
-
-    /* Income/expense display */
     .monthly-display { margin-left: auto; font-weight: 700; font-size: 1.18rem; color: var(--green); }
     #total-income { font-size: 3.1rem; color: var(--green); font-weight: 800; margin-top: 8px; letter-spacing: 0.01em;}
     .expense-total-row { margin-top:22px; border-top:1.5px dashed #e3e3e3; padding-top:18px; }
     #total-expenses { margin-left:auto; font-size:3.1rem; color:var(--red); font-weight:800; letter-spacing: 0.01em;}
-
-    /* Equation & Summary */
     #equation {
       display:flex; flex-direction:column; align-items:center;
       gap:22px; margin:42px 0;
@@ -246,8 +234,6 @@
       font-size:1.18rem; color: var(--red);
       text-align:center; margin-bottom:17px;
     }
-
-    /* Chart */
     #chart-container {
       display: flex;
       align-items: center;
@@ -259,7 +245,6 @@
     #chart-legend { min-width:200px; list-style:none; padding:0; margin:0; }
     #chart-legend li { display:flex; align-items:center; margin-bottom:11px; font-size:1.09rem;}
     .dot { width:15px; height:15px; border-radius:50%; margin-right:10px; }
-
     #affordability-explanation p {
       margin:15px 0;
       font-size:1.16rem;
@@ -270,15 +255,12 @@
     #affordability-explanation .toward   { color: var(--yellow); }
     #affordability-explanation .leftover { color: var(--green);  }
     .shortfall { color: var(--red); font-weight:700; }
-
     #affordability-result {
       font-size:1.31rem; margin-top:26px; font-weight: 600;
       text-align: center;
       margin-left: auto;
       margin-right: auto;
     }
-
-    /* Housing-to-Income Ratio & Required Income Alignment */
     #housing-ratio-container,
     #required-income-container {
       text-align: center;
@@ -320,8 +302,6 @@
       margin: 8px auto 2px auto;
       letter-spacing: 0.01em;
     }
-
-    /* Responsive */
     @media (max-width:800px) {
       body { padding: 12px 1vw;}
       .panel { padding: 30px 6vw 70px 6vw;}
@@ -355,35 +335,28 @@
       <div class="wizard-step" data-step="2">3. Summary</div>
       <div class="wizard-step" data-step="3">4. Mortgage</div>
     </div>
-
     <div class="wizard-panels">
-
       <!-- STEP 1: Income -->
       <section class="panel">
         <div class="section-title">Let’s figure out your monthly income</div>
         <div id="employers-container"></div>
         <button class="btn btn-gold" id="add-employer-btn">+ Add Employer</button>
-
         <div class="section-title">Other Income</div>
         <div id="other-income-container"></div>
         <button class="btn btn-gold" id="add-other-income-btn">+ Add Income</button>
-
         <div class="form-row">
           <label>Total Monthly Income:</label>
           <div id="total-income">$0.00</div>
         </div>
-
         <div class="btn-row">
           <button class="btn btn-gold next-btn">Next →</button>
         </div>
       </section>
-
       <!-- STEP 2: Expenses -->
       <section class="panel">
         <div class="section-title">Let’s figure out your monthly expenses</div>
         <div id="expenses-container"></div>
         <button class="btn btn-gold" id="add-expense-btn">+ Add Expense</button>
-
         <div id="expense-selector" class="form-row" style="display:none;">
           <select id="expense-type-select">
             <option value="car">Car Payment</option>
@@ -394,18 +367,15 @@
           </select>
           <button class="btn btn-navy" id="expense-type-confirm-btn">Add</button>
         </div>
-
         <div class="expense-total-row form-row">
           <label>Total Monthly Expenses:</label>
           <div id="total-expenses">$0.00</div>
         </div>
-
         <div class="btn-row">
           <button class="btn prev-btn">← Back</button>
           <button class="btn btn-gold next-btn">Next →</button>
         </div>
       </section>
-
       <!-- STEP 3: Summary -->
       <section class="panel">
         <div class="section-title">Your Disposable Income</div>
@@ -422,13 +392,11 @@
         </div>
         <div id="budget-health"></div>
         <button id="copy-btn" class="btn-copy">📋 Copy for reference</button>
-
         <div class="btn-row">
           <button class="btn prev-btn">← Back</button>
           <button class="btn btn-gold next-btn">Next →</button>
         </div>
       </section>
-
       <!-- STEP 4: Mortgage -->
       <section class="panel">
         <div class="section-title">Do you have a target mortgage payment?</div>
@@ -437,16 +405,12 @@
           <input type="number" id="mortgage-input" placeholder="$ / mo" min="0" step="0.01">
         </div>
         <button class="btn btn-navy" id="check-afford-btn">Check</button>
-
         <div id="chart-container">
           <canvas id="breakdown-chart" width="240" height="240"></canvas>
           <ul id="chart-legend"></ul>
         </div>
-
         <div id="affordability-explanation"></div>
         <div id="affordability-result"></div>
-
-        <!-- Housing-to-Income Ratio -->
         <div id="housing-ratio-container">
           Housing-to-Income Ratio:
           <span id="housing-ratio" class="housing-good">0.00%</span>
@@ -455,21 +419,17 @@
             This is an estimate; please consult your lender for exact requirements.
           </p>
         </div>
-
-        <!-- Required Income -->
         <div id="required-income-container">
           To hit a 31% housing ratio on this payment, you need a monthly income of
           <span id="required-income">$0.00</span>
           <br>(annual: <span id="required-income-annual">$0.00</span>)
         </div>
-
         <div class="btn-row">
           <button class="btn prev-btn">← Back</button>
         </div>
       </section>
     </div>
   </div>
-
   <script>
     function fmt(n) {
       return n.toLocaleString('en-US',
@@ -483,7 +443,6 @@
       const steps = [...document.querySelectorAll('.wizard-step')],
             panels = document.querySelector('.wizard-panels');
       let cur = 0;
-
       function show(i) {
         cur = i;
         panels.style.transform = `translateX(-${(i*100)/steps.length}%)`;
@@ -491,20 +450,17 @@
         document.querySelector('.wizard')
                 .scrollIntoView({ block: 'start' });
       }
-
       steps.forEach(s => s.onclick = () => show(+s.dataset.step));
       show(0);
       document.querySelectorAll('.next-btn')
               .forEach(b => b.onclick = () => show(Math.min(cur+1,3)));
       document.querySelectorAll('.prev-btn')
               .forEach(b => b.onclick = () => show(Math.max(cur-1,0)));
-
       let emp=0, oth=0, maxE=4;
       const empC=document.getElementById('employers-container'),
             addE=document.getElementById('add-employer-btn'),
             othC=document.getElementById('other-income-container'),
             addO=document.getElementById('add-other-income-btn');
-
       addE.onclick = () => {
         if(emp>=maxE) return; emp++;
         const card=document.createElement('div');
@@ -539,7 +495,6 @@
             <span class="monthly-display">$0.00</span>
           </div>`;
         empC.appendChild(card);
-
         const pt=card.querySelector('.pay-type-select');
         pt.onchange=()=>{
           card.querySelector('.hourly-group')
@@ -551,7 +506,6 @@
         if(emp===maxE) addE.disabled=true;
       };
       addE.click();
-
       addO.onclick = () => {
         oth++;
         const row=document.createElement('div');
@@ -568,7 +522,6 @@
         othC.appendChild(row);
       };
       addO.click();
-
       const expC=document.getElementById('expenses-container'),
             addX=document.getElementById('add-expense-btn'),
             selX=document.getElementById('expense-selector'),
@@ -603,7 +556,6 @@
       ['car','credit','loan'].forEach(addDyn);
       addX.onclick = () => selX.style.display='flex';
       cX.onclick = () => { addDyn(tX.value); selX.style.display='none'; };
-
       const tiEl=document.getElementById('total-income'),
             teEl=document.getElementById('total-expenses'),
             eInc=document.getElementById('eq-income'),
@@ -621,7 +573,6 @@
             reqEl=document.getElementById('required-income'),
             reqAnn=document.getElementById('required-income-annual'),
             ctx=cnv.getContext('2d');
-
       function updateTotals(){
         let totalInc=0;
         document.querySelectorAll('#employers-container .card').forEach(card=>{
@@ -642,24 +593,19 @@
         document.querySelectorAll('.other-income-input').forEach(i=>otherSum+=i.valueAsNumber||0);
         totalInc += otherSum;
         tiEl.textContent='$'+fmt(totalInc);
-
         let totalExp=0;
         document.querySelectorAll('.expense-input').forEach(i=>totalExp+=i.valueAsNumber||0);
         teEl.textContent='$'+fmt(totalExp);
-
         const disp=totalInc-totalExp;
         eInc.textContent='$'+fmt(totalInc);
         eExp.textContent='$'+fmt(totalExp);
         eDisp.textContent='$'+fmt(disp);
         eDisp.style.color=disp<600?varGet('--red'):varGet('--green');
-
         budH.textContent = disp<600
           ?'⚠️ Your disposable income is under $600 /month. Consider reducing debts or raising income.'
           :'';
-
         return { ti: totalInc, te: totalExp, disp };
       }
-
       copyB.onclick=()=>{
         navigator.clipboard.writeText(
           `Income ${eInc.textContent}\nExpenses ${eExp.textContent}\nDisposable ${eDisp.textContent}`
@@ -669,7 +615,6 @@
           copyB.textContent='📋 Copy for reference'; copyB.disabled=false;
         },2000);
       };
-
       function drawChart(r,e,s,mtg){
         const data=[r,e,s].map(v=>Math.max(v,0)),
               total=data.reduce((a,b)=>a+b,0),
@@ -696,7 +641,6 @@
         ctx.font='700 18px Playfair Display';
         ctx.fillText(`$${fmt(mtg)}`,cx,cy+32);
       }
-
       chkB.onclick=()=>{
         const { ti, te, disp } = updateTotals(),
               mortgage   = mtIn.valueAsNumber||0,
@@ -705,9 +649,7 @@
               spare      = disp-needed,
               shortBy    = Math.abs(Math.min(spare,0)),
               cl         = Math.max(spare,0);
-
         drawChart(rentVal,needed,cl,mortgage);
-
         if(spare<0){
           exEl.innerHTML=`<p>You can’t cover a <span class="toward">$${fmt(mortgage)}</span> mortgage.</p>
                           <p>You’re short <span class="shortfall">$${fmt(shortBy)}</span> per month.</p>`;
@@ -723,24 +665,19 @@
                           <p>That leaves <span class="leftover">$${fmt(spare)}</span> to spare.</p>`;
           rEl.textContent='✅ You could afford this payment!'; rEl.style.color=varGet('--green');
         }
-
-        // Housing‐to‐Income Ratio + Required Income
         const housingRatio = ti>0 ? (mortgage/ti)*100 : 0;
         hrEl.textContent = fmt(housingRatio)+'%';
         hrEl.className = housingRatio<=31 ? 'housing-good':'housing-bad';
-
         const threshold     = 31,
               requiredM     = threshold>0 ? mortgage/(threshold/100):0,
               requiredAnnual= requiredM*12;
         reqEl.textContent     = '$'+fmt(requiredM);
         reqAnn.textContent    = '$'+fmt(requiredAnnual);
-
         window.parent.postMessage({
           action: 'save',
           data: { income: ti, expenses: te, disposable: disp, targetMortgage: mortgage }
         }, '*');
       };
-
       document.body.addEventListener('input',()=>{ if(cur<2) updateTotals(); });
       updateTotals();
     });
